@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues, FormProvider, useForm, Resolver } from 'react-hook-form';
+import { useIntl } from 'react-intl';
 
 // Validate
 import { object, ValidationError, string } from 'yup';
@@ -20,10 +21,8 @@ import { login } from 'src/store/auth';
 
 import { URL_MAPPING } from 'src/routes/urlMapping';
 import { openSnackbar } from 'src/store/ui';
-import { AbstractResponse } from 'src/api/utils';
 import { CheckboxValue } from 'src/utils/constants';
-
-import message from 'src/lang/en.json';
+import { ApiError } from 'src/api/ApiError';
 
 // ----------------------------------------------------------------------
 
@@ -38,11 +37,15 @@ interface FormData extends FieldValues {
 export default function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { formatMessage } = useIntl();
   const [loading, setLoading] = useState(false);
 
   const validationSchema = object<FormData>().shape({
-    username: string().min(4).max(100).required(message['validate.required']),
-    password: string().required(message['validate.required']),
+    username: string()
+      .min(4)
+      .max(100)
+      .required(formatMessage({ id: 'validate.required' })),
+    password: string().required(formatMessage({ id: 'validate.required' })),
   });
 
   const formConfig = useForm<FormData>({
@@ -83,7 +86,12 @@ export default function LoginForm() {
         return;
       }
 
-      dispatch(openSnackbar({ message: (e as AbstractResponse).message, severity: 'error' }));
+      if (e instanceof ApiError) {
+        dispatch(openSnackbar({ message: formatMessage({ id: e.id }), severity: 'error' }));
+        return;
+      }
+
+      dispatch(openSnackbar({ message: (e as Error).message, severity: 'error' }));
     } finally {
       setLoading(false);
     }

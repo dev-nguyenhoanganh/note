@@ -1,21 +1,18 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { Helmet, HelmetData } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
+import { useIntl } from 'react-intl';
 // @mui
 import { styled, useTheme, alpha } from '@mui/material/styles';
 import { Typography, Divider, Stack, Button, Box, Paper } from '@mui/material';
 // hooks
 import useResponsive from 'src/hook/useResponsive';
-import { useAppSelector, useAppDispatch } from 'src/store/hook';
+import { useAppDispatch } from 'src/store/hook';
 // components
 import { Iconify } from 'src/components/iconify';
 import LazyImage from 'src/components/lazy-image';
 // sections
 import { LoginForm } from '../sections/auth/login';
 import { Theme } from 'src/types';
-import { URL_MAPPING } from 'src/routes/urlMapping';
-// Message
-import message from 'src/lang/en.json';
 import { openSnackbar } from 'src/store/ui';
 
 // ----------------------------------------------------------------------
@@ -86,9 +83,10 @@ export default function HomePage() {
   const upLg = useResponsive('up', 'lg');
   const theme: Theme = useTheme();
   const dispatch = useAppDispatch();
+  const { formatMessage } = useIntl();
 
   const showMaintainMessage = () => {
-    dispatch(openSnackbar({ message: message['notice.maintain'], severity: 'warning' }));
+    dispatch(openSnackbar({ message: formatMessage({ id: 'notice.maintain' }), severity: 'warning' }));
   };
 
   return (

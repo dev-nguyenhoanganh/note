@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
@@ -44,8 +44,7 @@ export default function ProtectRoutes() {
   const [open, setOpen] = useState(false);
 
   const { pathname } = useLocation();
-  const { token, initialized } = useAppSelector((state: RootState) => state.auth);
-  const { isLoading } = useAppSelector((state: RootState) => state.ui.loading);
+  const { token } = useAppSelector((state: RootState) => state.auth);
 
   // if (!initialized) {
   //   return <Loading />;

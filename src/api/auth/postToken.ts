@@ -1,4 +1,4 @@
-import message from 'src/lang/en.json';
+import { ApiError } from '../ApiError';
 import { addGlobalHeader } from '../utils';
 
 const SERVER_BASE_URL = process.env.REACT_APP_API_SERVER_BASE_URL || '';
@@ -20,7 +20,7 @@ const refreshToken = async (globalHeader: Map<string, string>) => {
   if (user === null || refreshToken === null) {
     localStorage.clear();
     sessionStorage.clear();
-    throw { message: message['error.reloadPage'] };
+    throw new ApiError('error.reloadPage');
   }
 
   const requestBody = {
@@ -43,7 +43,7 @@ const refreshToken = async (globalHeader: Map<string, string>) => {
   if (resp.statusCode === 404) {
     localStorage.clear();
     sessionStorage.clear();
-    throw { message: message['error.reloadPage'] };
+    throw new ApiError('error.reloadPage');
   }
 
   if (resp.statusCode !== 200) {

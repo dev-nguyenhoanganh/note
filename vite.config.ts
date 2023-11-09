@@ -1,9 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export default ({ mode }) => {
   // https://vitejs.dev/config/
@@ -13,6 +10,10 @@ export default ({ mode }) => {
       alias: {
         src: path.resolve('src/'),
       },
+    },
+    server: {
+      port: Number(process.env.PORT) || 9000,
+      open: true,
     },
     define: {
       'process.env': {
