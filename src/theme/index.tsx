@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMemo } from 'react';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider as MUIThemeProvider, createTheme, StyledEngineProvider } from '@mui/material/styles';
@@ -11,7 +10,7 @@ import typography from './typography';
 import GlobalStyles from './globalStyles';
 import customShadows from './customShadows';
 import componentsOverride from './overrides';
-import { Theme } from '../interface';
+import { Theme } from 'src/types';
 
 // ----------------------------------------------------------------------
 

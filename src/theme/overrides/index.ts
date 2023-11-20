@@ -7,7 +7,7 @@ import Tooltip from './Tooltip';
 import Backdrop from './Backdrop';
 import Typography from './Typography';
 import Autocomplete from './Autocomplete';
-import { Theme } from '../../interface';
+import { Theme } from 'src/types';
 
 // ----------------------------------------------------------------------
 

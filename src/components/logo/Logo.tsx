@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { Box, Link, Typography, BoxProps } from '@mui/material';
@@ -34,10 +33,10 @@ const Logo = ({ disabledLink = false, fontSize, sx }: LogoProps) => {
       to="/"
       component={RouterLink}
     >
-      {logo}
+      {/* {logo} */}
 
       <Typography variant="h5" sx={{ textTransform: 'uppercase', fontSize }}>
-        katazukesabisu
+        Logo
       </Typography>
     </Link>
   );

@@ -4,7 +4,7 @@ import SvgColor from 'src/components/svg-icon/SvgColor';
 
 export enum URL_MAPPING {
   ROOT = '/',
-  DASHBOARD = '/',
+  DASHBOARD = '/dashboard',
   BLOG = '/blog',
   BLOG_DETAIL = '/blog/blog-detail',
   BLOG_CREATE = '/blog/blog-create',

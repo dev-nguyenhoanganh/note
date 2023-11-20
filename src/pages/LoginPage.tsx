@@ -8,14 +8,12 @@ import { useSnackbar } from 'notistack';
 
 // hooks
 import useResponsive from 'src/hook/useResponsive';
-// import { useAppDispatch } from 'src/store/hook';
 // components
 import { Iconify } from 'src/components/iconify';
 import LazyImage from 'src/components/lazy-image';
 // sections
 import { LoginForm } from '../sections/auth/login';
 import { Theme } from 'src/types';
-// import { openSnackbar } from 'src/store/ui';
 
 // ----------------------------------------------------------------------
 
@@ -97,7 +95,7 @@ export default function HomePage() {
   return (
     <React.Fragment>
       <Helmet helmetData={helmetData}>
-        <title>Home Page</title>
+        <title>Login</title>
       </Helmet>
 
       <StyledContainer>

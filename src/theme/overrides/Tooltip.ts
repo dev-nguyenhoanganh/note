@@ -1,4 +1,4 @@
-import { Theme } from '../../interface';
+import { Theme } from 'src/types';
 
 // ----------------------------------------------------------------------
 
