@@ -8,11 +8,11 @@ import Nav from './Navigation';
 // import Loading from '../loading';
 
 // Redux
-import { useAppSelector } from 'src/store/hook';
+import { useAppSelector } from '@/store/hook';
 
 // Utils
-import { URL_MAPPING } from 'src/routes/urlMapping';
-import { RootState } from 'src/store';
+import { URL_MAPPING } from '@/routes/urlMapping';
+import { RootState } from '@/store';
 
 // ----------------------------------------------------------------------
 

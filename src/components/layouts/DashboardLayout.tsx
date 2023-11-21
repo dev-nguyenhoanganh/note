@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
 // Component
 import Header from './Header';
 import Nav from './Navigation';
-import Loading from '../loading';
+import { Loading } from '@/components/loading';
 // Redux
-import { URL_MAPPING } from 'src/routes/urlMapping';
-import { useAppSelector } from 'src/store/hook';
+import { URL_MAPPING } from '@/routes/urlMapping';
+import { useAppSelector } from '@/store/hook';
 
 // ----------------------------------------------------------------------
 

@@ -19,11 +19,11 @@ import {
   ListItemButton,
 } from '@mui/material';
 
-import { fToNow, fDateTime } from '../../../utils/formatTime';
-import { Iconify } from '../../../components/iconify';
-import { Theme } from '../../../interface';
-import { NOTIFICATIONS } from '../../../_mock/notification';
-import Scrollbar from '../../../components/scrollbar';
+import { fToNow, fDateTime } from '@/utils/formatTime';
+import { Iconify } from '@/components/iconify';
+import { Theme } from '@/types';
+import { NOTIFICATIONS } from '@/_mock/notification';
+import Scrollbar from '@/components/scrollbar';
 
 // ----------------------------------------------------------------------
 

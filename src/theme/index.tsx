@@ -10,7 +10,7 @@ import typography from './typography';
 import GlobalStyles from './globalStyles';
 import customShadows from './customShadows';
 import componentsOverride from './overrides';
-import { Theme } from 'src/types';
+import { Theme } from '@/types';
 
 // ----------------------------------------------------------------------
 

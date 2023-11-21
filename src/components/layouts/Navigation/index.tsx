@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { useLocation } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import { Box, Link, Drawer, Typography, Avatar } from '@mui/material';
 
-import useResponsive from '../../../hook/useResponsive';
-import Scrollbar from '../../../components/scrollbar';
+import useResponsive from '@/hook/useResponsive';
+import Scrollbar from '@/components/scrollbar';
 
-import { navConfig } from 'src/routes/urlMapping';
-import { Logo } from '../../logo';
-import NavSection from '../../nav-section/NavSection';
-import { useAppSelector } from 'src/store/hook';
+import { navConfig } from '@/routes/urlMapping';
+import { Logo } from '@/components/logo';
+import { useAppSelector } from '@/store/hook';
+import NavSection from '@/components/nav-section/NavSection';
 
 // ----------------------------------------------------------------------
 

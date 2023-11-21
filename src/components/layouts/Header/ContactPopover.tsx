@@ -13,12 +13,12 @@ import {
   ListItemText,
 } from '@mui/material';
 
-import { Theme } from '../../../interface';
-import { OnlineStatus } from '../../../utils/constants';
-import { fToNow } from '../../../utils/formatTime';
-import { CONTACTS } from '../../../_mock/contact';
-import Scrollbar from '../../../components/scrollbar';
-import { Iconify } from '../../iconify';
+import { Theme } from '@/types';
+import { OnlineStatus } from '@/utils/constants';
+import { fToNow } from '@/utils/formatTime';
+import { CONTACTS } from '@/_mock/contact';
+import Scrollbar from '@/components/scrollbar';
+import { Iconify } from '@/components/iconify';
 
 export default function ContactPopover() {
   // ----------- React Hook ------------------

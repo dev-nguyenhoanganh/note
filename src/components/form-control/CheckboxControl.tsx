@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect } from 'react';
 import { useFormContext, Controller, FieldValues } from 'react-hook-form';
 import { FormGroup, Checkbox, FormControlLabel } from '@mui/material';
 
-import { CheckboxValue } from 'src/utils/constants';
+import { CheckboxValue } from '@/utils/constants';
 
 type Option = {
   label: string;

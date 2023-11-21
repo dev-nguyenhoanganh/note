@@ -1,4 +1,4 @@
-import React, { useState, CSSProperties } from 'react';
+import { useState, CSSProperties } from 'react';
 import { Box } from '@mui/material';
 
 const fallBack = (

@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { FormControlLabel, Box, Typography, BoxProps } from '@mui/material';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import { useFormContext, Controller } from 'react-hook-form';
-import { CheckboxValue } from 'src/utils/constants';
+import { CheckboxValue } from '@/utils/constants';
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />

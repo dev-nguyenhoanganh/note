@@ -3,7 +3,7 @@ import { IntlProvider } from 'react-intl';
 // Read more: https://testing-library.com/docs/example-react-intl/
 import { render as rtlRender, RenderResult } from '@testing-library/react';
 // Load resources
-import enMessage from 'src/resources/lang/en.json';
+import enMessage from '@/resources/lang/en.json';
 
 const loadLocaleData = (locale: string) => {
   switch (locale) {

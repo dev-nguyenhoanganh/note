@@ -1,4 +1,4 @@
-import { Theme } from 'src/types';
+import { Theme } from '@/types';
 
 // ----------------------------------------------------------------------
 

@@ -2,7 +2,7 @@ import React, { useState, useMemo, MouseEvent } from 'react';
 import { alpha, useTheme } from '@mui/material/styles';
 import { Box, MenuItem, Stack, IconButton, Popover, Divider, Typography } from '@mui/material';
 
-import { Theme } from '../../../interface';
+import { Theme } from '@/types';
 
 // ----------------------------------------------------------------------
 

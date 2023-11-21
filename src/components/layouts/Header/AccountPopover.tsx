@@ -1,13 +1,13 @@
 import React, { useState, MouseEvent } from 'react';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover, useTheme } from '@mui/material';
 
-import { Theme } from 'src/interface';
+import { Theme } from '@/types';
 
 // Redux
-import { logout } from 'src/store/auth';
-import { useAppSelector, useAppDispatch } from 'src/store/hook';
-import { openSnackbar } from 'src/store/ui';
-import { AbstractResponse } from 'src/api/utils';
+import { logout } from '@/store/auth';
+import { useAppSelector, useAppDispatch } from '@/store/hook';
+import { openSnackbar } from '@/store/ui';
+import { AbstractResponse } from '@/api/utils';
 
 // ----------------------------------------------------------------------
 

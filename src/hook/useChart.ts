@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import { useTheme, alpha } from '@mui/material/styles';
 
-import { Theme } from 'src/types';
+import { Theme } from '@/types';
 
 // ----------------------------------------------------------------------
 

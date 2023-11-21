@@ -1,13 +1,13 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 // layouts
-// import ProtectRoutes from 'src/components/layouts/ProtectRoutes';
-import SimpleLayout from 'src/components/layouts/SimpleLayout';
+// import ProtectRoutes from '@/components/layouts/ProtectRoutes';
+import SimpleLayout from '@/components/layouts/SimpleLayout';
 
 // Pages
-import HomePage from 'src/pages/HomePage';
-import LoginPage from 'src/pages/LoginPage';
-import Page404 from 'src/pages/Page404';
+import HomePage from '@/pages/HomePage';
+import LoginPage from '@/pages/LoginPage';
+import Page404 from '@/pages/Page404';
 
 // URL
 import { URL_MAPPING } from './urlMapping';

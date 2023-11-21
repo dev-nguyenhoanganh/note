@@ -7,15 +7,15 @@ import { Typography, Divider, Stack, Button, Box, Paper } from '@mui/material';
 import { useSnackbar } from 'notistack';
 
 // hooks
-import useResponsive from 'src/hook/useResponsive';
-// import { useAppDispatch } from 'src/store/hook';
+import useResponsive from '@/hook/useResponsive';
+// import { useAppDispatch } from '@/store/hook';
 // components
-import { Iconify } from 'src/components/iconify';
-import LazyImage from 'src/components/lazy-image';
+import { Iconify } from '@/components/iconify';
+import LazyImage from '@/components/lazy-image';
 // sections
 import { LoginForm } from '../sections/auth/login';
-import { Theme } from 'src/types';
-// import { openSnackbar } from 'src/store/ui';
+import { Theme } from '@/types';
+// import { openSnackbar } from '@/store/ui';
 
 // ----------------------------------------------------------------------
 
@@ -79,67 +79,119 @@ const StyledContent = styled('div')(() => ({
 
 // ----------------------------------------------------------------------
 
+const paralax = () => {
+  // ------------- VARIABLES ------------- //
+  let ticking = false;
+  const isFirefox = /Firefox/i.test(navigator.userAgent);
+  const isIe = /MSIE/i.test(navigator.userAgent) || /Trident.*rv\:11\./i.test(navigator.userAgent);
+  const scrollSensitivitySetting = 30; //Increase/decrease this number to change sensitivity to trackpad gestures (up = less sensitive; down = more sensitive)
+  const slideDurationSetting = 600; //Amount of time for which slide is "locked"
+  let currentSlideNumber = 0;
+  const totalSlideNumber = document.querySelectorAll('.background').length;
+  let delta: number;
+
+  // ------------- DETERMINE DELTA/SCROLL DIRECTION ------------- //
+  function parallaxScroll(evt) {
+    if (isFirefox) {
+      //Set delta for Firefox
+      delta = evt.detail * -120;
+    } else if (isIe) {
+      //Set delta for IE
+      delta = -evt.deltaY;
+    } else {
+      //Set delta for all other browsers
+      delta = evt.wheelDelta;
+    }
+
+    if (ticking != true) {
+      if (delta <= -scrollSensitivitySetting) {
+        //Down scroll
+        ticking = true;
+        if (currentSlideNumber !== totalSlideNumber - 1) {
+          currentSlideNumber++;
+          nextItem();
+        }
+        slideDurationTimeout(slideDurationSetting);
+      }
+      if (delta >= scrollSensitivitySetting) {
+        //Up scroll
+        ticking = true;
+        if (currentSlideNumber !== 0) {
+          currentSlideNumber--;
+        }
+        previousItem();
+        slideDurationTimeout(slideDurationSetting);
+      }
+    }
+  }
+
+  // ------------- SET TIMEOUT TO TEMPORARILY "LOCK" SLIDES ------------- //
+  function slideDurationTimeout(slideDuration) {
+    setTimeout(function () {
+      ticking = false;
+    }, slideDuration);
+  }
+
+  // ------------- ADD EVENT LISTENER ------------- //
+  const mousewheelEvent = isFirefox ? 'DOMMouseScroll' : 'wheel';
+  window.addEventListener(mousewheelEvent, _.throttle(parallaxScroll, 60), false);
+
+  // ------------- SLIDE MOTION ------------- //
+  function nextItem() {
+    const $previousSlide = $('.background').eq(currentSlideNumber - 1);
+    $previousSlide.removeClass('up-scroll').addClass('down-scroll');
+  }
+
+  function previousItem() {
+    const $currentSlide = $('.background').eq(currentSlideNumber);
+    $currentSlide.removeClass('down-scroll').addClass('up-scroll');
+  }
+};
+
 const helmetData = new HelmetData({});
 
 export default function HomePage() {
-  const upLg = useResponsive('up', 'lg');
-  const theme: Theme = useTheme();
-  // const dispatch = useAppDispatch();
+  // const upLg = useResponsive('up', 'lg');
+  // const theme: Theme = useTheme();
   const { formatMessage } = useIntl();
 
-  const { enqueueSnackbar } = useSnackbar();
+  // const { enqueueSnackbar: openSnackbar } = useSnackbar();
 
-  const showMaintainMessage = () => {
-    enqueueSnackbar(formatMessage({ id: 'notice.maintain' }), { variant: 'warning' });
-    // dispatch(openSnackbar({ message: formatMessage({ id: 'notice.maintain' }), severity: 'warning' }));
-  };
+  // const showMaintainMessage = () => {
+  //   openSnackbar(formatMessage({ id: 'notice.maintain' }), { variant: 'warning' });
+  // };
 
   return (
     <React.Fragment>
       <Helmet helmetData={helmetData}>
-        <title>Home Page</title>
+        <title>{formatMessage({ id: 'homePage.title' })}</title>
       </Helmet>
 
-      <StyledContainer>
-        <StyledSection theme={theme}>
-          <Typography variant="h3" sx={{ mt: 2, mb: 4 }} gutterBottom>
-            Sign in
-          </Typography>
-
-          <Stack direction="row" spacing={2}>
-            <Button fullWidth size="large" color="inherit" variant="outlined" onClick={showMaintainMessage}>
-              <Iconify icon="eva:google-fill" color="#DF3E30" width={22} />
-            </Button>
-
-            <Button fullWidth size="large" color="inherit" variant="outlined" onClick={showMaintainMessage}>
-              <Iconify icon="eva:facebook-fill" color="#1877F2" width={22} />
-            </Button>
-
-            <Button fullWidth size="large" color="inherit" variant="outlined" onClick={showMaintainMessage}>
-              <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={22} />
-            </Button>
-          </Stack>
-
-          <Divider sx={{ my: 3 }}>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              OR
-            </Typography>
-          </Divider>
-
-          <LoginForm />
-        </StyledSection>
-
-        {upLg && (
-          <StyledForm>
-            <StyledContent>
-              <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-                Hi, Welcome Back
-              </Typography>
-              <LazyImage src="/assets/illustrations/illustration_dashboard.png" alt="login" />
-            </StyledContent>
-          </StyledForm>
-        )}
-      </StyledContainer>
+      <div className="container">
+        <section className="background">
+          <div className="content-wrapper">
+            <p className="content-title">Full Page Parallax Effect</p>
+            <p className="content-subtitle">Scroll down and up to see the effect!</p>
+          </div>
+        </section>
+        <section className="background">
+          <div className="content-wrapper">
+            <p className="content-title">Cras lacinia non eros nec semper.</p>
+            <p className="content-subtitle">
+              Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras ut massa
+              mattis nibh semper pretium.
+            </p>
+          </div>
+        </section>
+        <section className="background">
+          <div className="content-wrapper">
+            <p className="content-title">Etiam consequat lectus.</p>
+            <p className="content-subtitle">
+              Nullam tristique urna sed tellus ornare congue. Etiam vitae erat at nibh aliquam dapibus.
+            </p>
+          </div>
+        </section>
+      </div>
     </React.Fragment>
   );
 }

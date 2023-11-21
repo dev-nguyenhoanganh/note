@@ -1,13 +1,13 @@
 import { styled } from '@mui/material/styles';
 import { Box, Stack, AppBar, Toolbar, IconButton, AppBarProps } from '@mui/material';
 
-import { bgBlur } from 'src/utils/cssStyles';
+import { bgBlur } from '@/utils/cssStyles';
 
 import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
-import { Iconify } from '../../iconify';
+import { Iconify } from '@/components/iconify';
 import ContactPopover from './ContactPopover';
 
 // ----------------------------------------------------------------------

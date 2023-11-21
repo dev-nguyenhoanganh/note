@@ -2,6 +2,7 @@
   "page404.heading": "Sorry, page not found!",
   "page404.message": "Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve mistyped the URL? Be sure to check your spelling.",
   "page404.button.backToHomePage": "Go To Home",
+  "homePage.title": "Home Page",
   "notice.maintain": "This feature is under maintenance. Please try again later.",
   "notice.apiFetch.noData": "The current query has no posts. Please make sure you have published items matching your query.",
   "error.blog.notFound": "The post you were looking for does not exist.",

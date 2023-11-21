@@ -12,17 +12,17 @@ import { Link, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
 // components
-import InputControl from 'src/components/form-control/InputControl';
-import CheckboxControl from 'src/components/form-control/CheckboxControl';
+import InputControl from '@/components/form-control/InputControl';
+import CheckboxControl from '@/components/form-control/CheckboxControl';
 
 // Hook
-import { useAppDispatch } from 'src/store/hook';
-import { login } from 'src/store/auth';
+import { useAppDispatch } from '@/store/hook';
+import { login } from '@/store/auth';
 
-import { URL_MAPPING } from 'src/routes/urlMapping';
-import { openSnackbar } from 'src/store/ui';
-import { CheckboxValue } from 'src/utils/constants';
-import { ApiError } from 'src/api/ApiError';
+import { URL_MAPPING } from '@/routes/urlMapping';
+import { openSnackbar } from '@/store/ui';
+import { CheckboxValue } from '@/utils/constants';
+import { ApiError } from '@/api/ApiError';
 
 // ----------------------------------------------------------------------
 

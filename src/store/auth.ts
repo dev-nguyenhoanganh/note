@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { addGlobalHeader, removeGlobalHeader } from 'src/api/utils';
-import { LoginPayload, DataLogin, postLogin, postLogout } from 'src/api/auth';
+import { addGlobalHeader, removeGlobalHeader } from '@/api/utils';
+import { LoginPayload, DataLogin, postLogin, postLogout } from '@/api/auth';
 
 export interface AuthState extends DataLogin {
   initialized: boolean;
@@ -111,7 +111,7 @@ const authSlice = createSlice({
       sessionStorage.setItem('token', payload.token);
       sessionStorage.setItem('user', btoa(JSON.stringify(loginUser)));
     });
-    builder.addCase(login.rejected, (state, action) => {
+    builder.addCase(login.rejected, (_, action) => {
       throw action.payload;
     });
     builder.addCase(logout.fulfilled, () => {
@@ -132,7 +132,7 @@ const authSlice = createSlice({
       sessionStorage.removeItem('user');
       sessionStorage.clear();
     });
-    builder.addCase(logout.rejected, (state, action) => {
+    builder.addCase(logout.rejected, (_, action) => {
       throw action.payload;
     });
   },

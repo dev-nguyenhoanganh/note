@@ -10,7 +10,7 @@ import {
   FormHelperText,
 } from '@mui/material';
 
-import { Iconify } from '../iconify';
+import { Iconify } from '@/components/iconify';
 
 interface InputControlProps {
   label: string;

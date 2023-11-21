@@ -4,8 +4,8 @@ import { GlobalStyles } from '@mui/material';
 import { FieldValues } from 'react-hook-form';
 
 // utils
-import { bgBlur } from 'src/utils/cssStyles';
-import { Theme } from 'src/types';
+import { bgBlur } from '@/utils/cssStyles';
+import { Theme } from '@/types';
 
 // ----------------------------------------------------------------------
 

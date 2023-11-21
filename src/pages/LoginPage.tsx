@@ -7,13 +7,13 @@ import { Typography, Divider, Stack, Button, Box, Paper } from '@mui/material';
 import { useSnackbar } from 'notistack';
 
 // hooks
-import useResponsive from 'src/hook/useResponsive';
+import useResponsive from '@/hook/useResponsive';
 // components
-import { Iconify } from 'src/components/iconify';
-import LazyImage from 'src/components/lazy-image';
+import { Iconify } from '@/components/iconify';
+import LazyImage from '@/components/lazy-image';
 // sections
 import { LoginForm } from '../sections/auth/login';
-import { Theme } from 'src/types';
+import { Theme } from '@/types';
 
 // ----------------------------------------------------------------------
 
@@ -85,11 +85,10 @@ export default function HomePage() {
   // const dispatch = useAppDispatch();
   const { formatMessage } = useIntl();
 
-  const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar: openSnackbar } = useSnackbar();
 
   const showMaintainMessage = () => {
-    enqueueSnackbar(formatMessage({ id: 'notice.maintain' }), { variant: 'warning' });
-    // dispatch(openSnackbar({ message: formatMessage({ id: 'notice.maintain' }), severity: 'warning' }));
+    openSnackbar(formatMessage({ id: 'notice.maintain' }), { variant: 'warning' });
   };
 
   return (

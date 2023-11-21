@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { IntlProvider } from 'react-intl';
 
-import App from 'src/App.tsx';
+import App from '@/App.tsx';
 
 // Load resources
-import enMessage from 'src/resources/lang/en.json';
+import enMessage from '@/resources/lang/en.json';
 
 const loadLocaleData = (locale: string) => {
   switch (locale) {
