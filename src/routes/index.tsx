@@ -17,7 +17,8 @@ import { URL_MAPPING } from './urlMapping';
 export default function Router() {
   return (
     <Routes>
-      <Route path={URL_MAPPING.ROOT} element={<HomePage />} />
+      {/* <Route path={URL_MAPPING.ROOT} element={<HomePage />} /> */}
+      <Route path={URL_MAPPING.ROOT} element={<LoginPage />} />
       <Route path={URL_MAPPING.LOGIN} element={<LoginPage />} />
 
       {/* <Route path={URL_MAPPING.ROOT} element={<ProtectRoutes />}>
