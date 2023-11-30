@@ -5,7 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import SimpleLayout from '@/components/layouts/SimpleLayout';
 
 // Pages
-import HomePage from '@/pages/HomePage';
+// import HomePage from '@/pages/HomePage';
 import LoginPage from '@/pages/LoginPage';
 import Page404 from '@/pages/Page404';
 
