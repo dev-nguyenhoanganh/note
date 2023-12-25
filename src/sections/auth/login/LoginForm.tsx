@@ -70,8 +70,13 @@ export default function LoginForm() {
       clearErrors();
 
       const { username, password, remember } = getValues();
-      await validationSchema.validate({ username, password }, { abortEarly: false });
-      const resp = await dispatch(login({ username, password, remember: remember[0] ? '1' : '' }));
+      await validationSchema.validate(
+        { username, password },
+        { abortEarly: false },
+      );
+      const resp = await dispatch(
+        login({ username, password, remember: remember[0] ? '1' : '' }),
+      );
 
       if (resp.type.endsWith('fulfilled')) {
         navigate(URL_MAPPING.ROOT, { replace: true });
@@ -87,11 +92,18 @@ export default function LoginForm() {
       }
 
       if (e instanceof ApiError) {
-        dispatch(openSnackbar({ message: formatMessage({ id: e.id }), severity: 'error' }));
+        dispatch(
+          openSnackbar({
+            message: formatMessage({ id: e.id }),
+            severity: 'error',
+          }),
+        );
         return;
       }
 
-      dispatch(openSnackbar({ message: (e as Error).message, severity: 'error' }));
+      dispatch(
+        openSnackbar({ message: (e as Error).message, severity: 'error' }),
+      );
     } finally {
       setLoading(false);
     }
@@ -101,18 +113,46 @@ export default function LoginForm() {
     <form onSubmit={handleLogin}>
       <FormProvider {...formConfig}>
         <Stack spacing={3}>
-          <InputControl label="Username" name="username" />
-          <InputControl label="Password" name="password" type="password" />
+          <InputControl
+            label="Username"
+            name="username"
+            dataTestId="username-input"
+          />
+          <InputControl
+            label="Password"
+            name="password"
+            type="password"
+            dataTestId="password-input"
+          />
         </Stack>
 
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
-          <CheckboxControl name="remember" options={LOGIN_OPTION} />
-          <Link variant="subtitle2" underline="hover">
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ my: 2 }}
+        >
+          <CheckboxControl
+            name="remember"
+            options={LOGIN_OPTION}
+          />
+          <Link
+            data-testid="forgot-button"
+            variant="subtitle2"
+            underline="hover"
+          >
             Forgot password?
           </Link>
         </Stack>
 
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={loading}>
+        <LoadingButton
+          data-testid="login-button"
+          fullWidth
+          size="large"
+          type="submit"
+          variant="contained"
+          loading={loading}
+        >
           Login
         </LoadingButton>
       </FormProvider>

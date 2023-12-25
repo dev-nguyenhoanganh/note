@@ -16,7 +16,11 @@ interface InputControlProps {
   options: Option[];
 }
 
-const CheckboxControl = ({ options = [], name, initValue = [] }: InputControlProps) => {
+const CheckboxControl = ({
+  options = [],
+  name,
+  initValue = [],
+}: InputControlProps) => {
   const { control, setValue } = useFormContext();
 
   useEffect(() => {
@@ -34,7 +38,11 @@ const CheckboxControl = ({ options = [], name, initValue = [] }: InputControlPro
             <Controller
               name={`${name}.${idx}`}
               control={control}
-              render={({ field: { onChange, onBlur, ref, value } }: { field: FieldValues }) => (
+              render={({
+                field: { onChange, onBlur, ref, value },
+              }: {
+                field: FieldValues;
+              }) => (
                 <FormControlLabel
                   label={item.label}
                   control={
@@ -43,7 +51,11 @@ const CheckboxControl = ({ options = [], name, initValue = [] }: InputControlPro
                       checked={item.value === value}
                       value={value}
                       onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        onChange(e.target.checked ? CheckboxValue.Checked : CheckboxValue.Uncheck)
+                        onChange(
+                          e.target.checked
+                            ? CheckboxValue.Checked
+                            : CheckboxValue.Uncheck,
+                        )
                       }
                       onBlur={onBlur}
                     />
