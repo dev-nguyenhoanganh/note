@@ -1,6 +1,14 @@
 import React, { useState, useMemo, MouseEvent } from 'react';
 import { alpha, useTheme } from '@mui/material/styles';
-import { Box, MenuItem, Stack, IconButton, Popover, Divider, Typography } from '@mui/material';
+import {
+  Box,
+  MenuItem,
+  Stack,
+  IconButton,
+  Popover,
+  Divider,
+  Typography,
+} from '@mui/material';
 
 import { Theme } from '@/types';
 
@@ -75,6 +83,11 @@ export default function LanguagePopover() {
             ml: 0.75,
             width: 220,
             boxShadow: theme.customShadows.dropdown,
+            backgroundColor: alpha(
+              theme.palette.background.paper,
+              theme.palette.mode === 'dark' ? 0.1 : 0.8,
+            ),
+            backdropFilter: 'blur(135px)',
             '& .MuiMenuItem-root': {
               pl: 2.5,
               pr: 2,
@@ -91,8 +104,17 @@ export default function LanguagePopover() {
         <Divider sx={{ borderStyle: 'dashed' }} />
         <Stack>
           {LANGS.map((option) => (
-            <MenuItem key={option.value} selected={option.value === LANGS[0].value} onClick={() => handleClose()}>
-              <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
+            <MenuItem
+              key={option.value}
+              selected={option.value === LANGS[0].value}
+              onClick={() => handleClose()}
+            >
+              <Box
+                component="img"
+                alt={option.label}
+                src={option.icon}
+                sx={{ width: 28, mr: 2 }}
+              />
               {option.label}
             </MenuItem>
           ))}

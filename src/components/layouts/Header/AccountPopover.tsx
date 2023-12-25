@@ -1,13 +1,24 @@
 import React, { useState, MouseEvent } from 'react';
-import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover, useTheme } from '@mui/material';
+import {
+  Box,
+  Divider,
+  Typography,
+  Stack,
+  MenuItem,
+  Avatar,
+  IconButton,
+  Popover,
+  useTheme,
+  alpha,
+} from '@mui/material';
+import { useSnackbar } from 'notistack';
 
 import { Theme } from '@/types';
 
 // Redux
 import { logout } from '@/store/auth';
 import { useAppSelector, useAppDispatch } from '@/store/hook';
-import { openSnackbar } from '@/store/ui';
-import { AbstractResponse } from '@/api/utils';
+import { RootState } from '@/store';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +43,8 @@ export default function AccountPopover() {
   // ----------- React Hook ------------------
   const theme: Theme = useTheme();
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state: RootState) => state.auth);
+  const { enqueueSnackbar: openSnackbar } = useSnackbar();
 
   // ----------- State declare ---------------
   const [open, setOpen] = useState<HTMLButtonElement | null>(null);
@@ -61,7 +73,7 @@ export default function AccountPopover() {
         location.reload();
       }
     } catch (e) {
-      dispatch(openSnackbar({ message: (e as AbstractResponse).message, severity: 'error' }));
+      openSnackbar((e as Error).message, { variant: 'error' });
     } finally {
       setLoading(false);
     }
@@ -86,6 +98,11 @@ export default function AccountPopover() {
             ml: 0.75,
             width: 220,
             boxShadow: theme.customShadows.dropdown,
+            backgroundColor: alpha(
+              theme.palette.background.paper,
+              theme.palette.mode === 'dark' ? 0.1 : 0.8,
+            ),
+            backdropFilter: 'blur(135px)',
             '& .MuiMenuItem-root': {
               typography: 'typography.body2',
               borderRadius: 0.75,

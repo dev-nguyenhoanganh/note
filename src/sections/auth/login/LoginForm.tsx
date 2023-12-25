@@ -1,7 +1,8 @@
 import { FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as ReactLink } from 'react-router-dom';
 import { FieldValues, FormProvider, useForm, Resolver } from 'react-hook-form';
 import { useIntl } from 'react-intl';
+import { useSnackbar } from 'notistack';
 
 // Validate
 import { object, ValidationError, string } from 'yup';
@@ -20,7 +21,6 @@ import { useAppDispatch } from '@/store/hook';
 import { login } from '@/store/auth';
 
 import { URL_MAPPING } from '@/routes/urlMapping';
-import { openSnackbar } from '@/store/ui';
 import { CheckboxValue } from '@/utils/constants';
 import { ApiError } from '@/api/ApiError';
 
@@ -39,6 +39,7 @@ export default function LoginForm() {
   const dispatch = useAppDispatch();
   const { formatMessage } = useIntl();
   const [loading, setLoading] = useState(false);
+  const { enqueueSnackbar: openSnackbar } = useSnackbar();
 
   const validationSchema = object<FormData>().shape({
     username: string()
@@ -92,18 +93,11 @@ export default function LoginForm() {
       }
 
       if (e instanceof ApiError) {
-        dispatch(
-          openSnackbar({
-            message: formatMessage({ id: e.id }),
-            severity: 'error',
-          }),
-        );
+        openSnackbar(formatMessage({ id: e.id }), { variant: 'error' });
         return;
       }
 
-      dispatch(
-        openSnackbar({ message: (e as Error).message, severity: 'error' }),
-      );
+      openSnackbar((e as Error).message, { variant: 'error' });
     } finally {
       setLoading(false);
     }
@@ -132,26 +126,25 @@ export default function LoginForm() {
           justifyContent="space-between"
           sx={{ my: 2 }}
         >
-          <CheckboxControl
-            name="remember"
-            options={LOGIN_OPTION}
-          />
+          <CheckboxControl name="remember" options={LOGIN_OPTION} />
           <Link
-            data-testid="forgot-button"
+            component={ReactLink}
             variant="subtitle2"
             underline="hover"
+            to={URL_MAPPING.RESET_PASSWORD}
+            data-testid="forgot-button"
           >
             Forgot password?
           </Link>
         </Stack>
 
         <LoadingButton
-          data-testid="login-button"
           fullWidth
           size="large"
           type="submit"
           variant="contained"
           loading={loading}
+          data-testid="login-button"
         >
           Login
         </LoadingButton>

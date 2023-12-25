@@ -20,6 +20,7 @@ export default ({ mode }) => {
   // https://vitejs.dev/config/
   return defineConfig({
     plugins: [react(), checker({ typescript: true })],
+    base: '',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
@@ -35,6 +36,7 @@ export default ({ mode }) => {
     },
     publicDir: 'public',
     build: {
+      sourcemap: true,
       rollupOptions: {
         input: {
           app: './index.html',

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useLocation } from 'react-router-dom';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, useTheme } from '@mui/material/styles';
 import { Box, Link, Drawer, Typography, Avatar } from '@mui/material';
 
 import useResponsive from '@/hook/useResponsive';
@@ -41,6 +41,7 @@ type NavigationProps = {
 export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
   const { pathname } = useLocation();
   const { user } = useAppSelector((state) => state.auth);
+  const theme = useTheme();
 
   const isDesktop = useResponsive('up', 'lg');
 
@@ -55,14 +56,31 @@ export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
     <Scrollbar
       sx={{
         height: 1,
-        '& .simplebar-content': { height: 1, display: 'flex', flexDirection: 'column' },
+        '& .simplebar-content': {
+          height: 1,
+          display: 'flex',
+          flexDirection: 'column',
+        },
       }}
     >
-      <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
+      <Box
+        sx={{
+          backgroundColor: 'transparent',
+          px: 2.5,
+          py: 3,
+          display: 'inline-flex',
+        }}
+      >
         <Logo />
       </Box>
 
-      <Box sx={{ mb: 5, mx: 2.5 }}>
+      <Box
+        sx={{
+          backgroundColor: 'transparent',
+          mb: 5,
+          mx: 2.5,
+        }}
+      >
         <Link underline="none">
           <StyledAccount>
             <Avatar src={user.photoUrl} alt="photoUrl" />
@@ -72,7 +90,10 @@ export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
                 {user.displayName}
               </Typography>
 
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              <Typography
+                variant="body2"
+                sx={{ color: 'text.secondary', textTransform: 'capitalize' }}
+              >
                 {user.role}
               </Typography>
             </Box>
@@ -82,8 +103,19 @@ export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
 
       <NavSection data={navConfig} />
 
-      <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <StyledCover src={'/assets/illustrations/illustrations_nav_footer.svg'} alt="Cover image" />
+      <Box
+        sx={{
+          backgroundColor: 'transparent',
+          flexGrow: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <StyledCover
+          src={'/assets/illustrations/illustrations_nav_footer.svg'}
+          alt="Cover image"
+        />
       </Box>
     </Scrollbar>
   );
@@ -94,6 +126,7 @@ export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
       sx={{
         flexShrink: { lg: 0 },
         width: { lg: NAV_WIDTH },
+        backgroundColor: 'transparent',
       }}
     >
       {isDesktop ? (
@@ -103,8 +136,12 @@ export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
           PaperProps={{
             sx: {
               width: NAV_WIDTH,
-              bgcolor: 'background.default',
               borderRightStyle: 'dashed',
+              backgroundColor: alpha(
+                theme.palette.background.paper,
+                theme.palette.mode === 'dark' ? 0.1 : 0.8,
+              ),
+              backdropFilter: 'blur(135px)',
             },
           }}
         >

@@ -64,7 +64,7 @@ export default function NotificationsPopover() {
       notifications.map((notification) => ({
         ...notification,
         isUnRead: false,
-      }))
+      })),
     );
   }, [notifications]);
 
@@ -92,6 +92,11 @@ export default function NotificationsPopover() {
             ml: 0.75,
             width: 360,
             boxShadow: theme.customShadows.dropdown,
+            backgroundColor: alpha(
+              theme.palette.background.paper,
+              theme.palette.mode === 'dark' ? 0.1 : 0.8,
+            ),
+            backdropFilter: 'blur(135px)',
           },
         }}
       >
@@ -118,26 +123,39 @@ export default function NotificationsPopover() {
           <List
             disablePadding
             subheader={
-              <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'typography.overline' }}>
+              <ListSubheader
+                disableSticky
+                sx={{ py: 1, px: 2.5, typography: 'typography.overline' }}
+              >
                 New
               </ListSubheader>
             }
           >
             {notifications.slice(0, 2).map((notification) => (
-              <NotificationItem key={notification.id} notification={notification} formatToNow />
+              <NotificationItem
+                key={notification.id}
+                notification={notification}
+                formatToNow
+              />
             ))}
           </List>
 
           <List
             disablePadding
             subheader={
-              <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'typography.overline' }}>
+              <ListSubheader
+                disableSticky
+                sx={{ py: 1, px: 2.5, typography: 'typography.overline' }}
+              >
                 Before that
               </ListSubheader>
             }
           >
             {notifications.slice(2, 5).map((notification) => (
-              <NotificationItem key={notification.id} notification={notification} />
+              <NotificationItem
+                key={notification.id}
+                notification={notification}
+              />
             ))}
           </List>
         </Scrollbar>
@@ -171,7 +189,10 @@ interface NotificationItemProps {
   formatToNow?: boolean;
 }
 
-function NotificationItem({ notification, formatToNow }: NotificationItemProps): JSX.Element {
+function NotificationItem({
+  notification,
+  formatToNow,
+}: NotificationItemProps): JSX.Element {
   const { avatar, title } = renderContent(notification);
 
   return (
@@ -200,8 +221,13 @@ function NotificationItem({ notification, formatToNow }: NotificationItemProps):
               color: 'text.disabled',
             }}
           >
-            <Iconify icon="eva:clock-outline" sx={{ mr: 0.5, width: 16, height: 16 }} />
-            {formatToNow ? fToNow(notification.createdAt) : fDateTime(notification.createdAt)}
+            <Iconify
+              icon="eva:clock-outline"
+              sx={{ mr: 0.5, width: 16, height: 16 }}
+            />
+            {formatToNow
+              ? fToNow(notification.createdAt)
+              : fDateTime(notification.createdAt)}
           </Typography>
         }
       />
@@ -215,7 +241,11 @@ function renderContent(notification: NotificationDetail) {
   const title = (
     <Typography variant="subtitle2">
       {notification.title}
-      <Typography component="span" variant="body2" sx={{ color: 'text.secondary' }}>
+      <Typography
+        component="span"
+        variant="body2"
+        sx={{ color: 'text.secondary' }}
+      >
         &nbsp; {noCase(notification.description)}
       </Typography>
     </Typography>
@@ -223,30 +253,52 @@ function renderContent(notification: NotificationDetail) {
 
   if (notification.type === 'order_placed') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_package.svg" />,
+      avatar: (
+        <img
+          alt={notification.title}
+          src="/assets/icons/ic_notification_package.svg"
+        />
+      ),
       title,
     };
   }
   if (notification.type === 'order_shipped') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_shipping.svg" />,
+      avatar: (
+        <img
+          alt={notification.title}
+          src="/assets/icons/ic_notification_shipping.svg"
+        />
+      ),
       title,
     };
   }
   if (notification.type === 'mail') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_mail.svg" />,
+      avatar: (
+        <img
+          alt={notification.title}
+          src="/assets/icons/ic_notification_mail.svg"
+        />
+      ),
       title,
     };
   }
   if (notification.type === 'chat_message') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_chat.svg" />,
+      avatar: (
+        <img
+          alt={notification.title}
+          src="/assets/icons/ic_notification_chat.svg"
+        />
+      ),
       title,
     };
   }
   return {
-    avatar: notification.avatar ? <img alt={notification.title} src={notification.avatar} /> : null,
+    avatar: notification.avatar ? (
+      <img alt={notification.title} src={notification.avatar} />
+    ) : null,
     title,
   };
 }

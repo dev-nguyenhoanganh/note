@@ -8,16 +8,18 @@ import {
   FormControl,
   InputLabel,
   FormHelperText,
+  alpha,
 } from '@mui/material';
 
-import { Iconify } from '@/components/iconify';
+import { Iconify } from '../iconify';
 
 interface InputControlProps {
   label: string;
   name: string;
   initValue?: string;
-  type?: 'password' | 'text';
-  dataTestId: string;
+  type?: string;
+  disabled?: boolean;
+  dataTestId?: string;
 }
 
 const InputControl = ({
@@ -25,6 +27,7 @@ const InputControl = ({
   name,
   initValue = '',
   type = 'text',
+  disabled = false,
   dataTestId,
 }: InputControlProps) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -44,7 +47,7 @@ const InputControl = ({
 
   const renderInput = useCallback(
     ({ field }: { field: FieldValues }) => {
-      if (type === 'text') {
+      if (type !== 'password') {
         return (
           <TextField
             inputProps={{
@@ -53,12 +56,19 @@ const InputControl = ({
               'data-testid': dataTestId,
             }}
             error={Boolean(errors[name])}
-            sx={{
-              '&>.Mui-error>input': { background: '#FFF2F7' },
+            type={type}
+            sx={(theme) => ({
+              '&>.Mui-error>input': {
+                background: alpha('#FFF2F721', theme.palette.mode === 'dark' ? 0.12 : 0.8),
+              },
               '&>.MuiFormHelperText-root': { fontSize: 'inherit' },
-            }}
+              '&>.Mui-disabled>fieldset': {
+                backgroundColor: alpha(theme.palette.text.primary, 0.12),
+              },
+            })}
             helperText={errors[name]?.message as string}
             label={label}
+            disabled={disabled}
           />
         );
       }
@@ -69,7 +79,11 @@ const InputControl = ({
           <OutlinedInput
             name={name}
             label={label}
-            sx={{ '&.Mui-error': { background: '#FFF2F7' } }}
+            sx={(theme) => ({
+              '&.Mui-error': {
+                background: alpha('#FFF2F721', theme.palette.mode === 'dark' ? 0.12 : 0.8),
+              },
+            })}
             type={showPassword ? 'text' : 'password'}
             error={Boolean(errors[name])}
             inputProps={{
@@ -77,24 +91,17 @@ const InputControl = ({
               'aria-label': name,
               'data-testid': dataTestId,
             }}
+            disabled={disabled}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton
-                  onClick={() => setShowPassword(!showPassword)}
-                  edge="end"
-                >
-                  <Iconify
-                    icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'}
-                  />
+                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
                 </IconButton>
               </InputAdornment>
             }
           />
           {errors[name]?.message && (
-            <FormHelperText
-              error={Boolean(errors[name])}
-              sx={{ fontSize: 'inherit' }}
-            >
+            <FormHelperText error={Boolean(errors[name])} sx={{ fontSize: 'inherit' }}>
               {errors[name]?.message as string}
             </FormHelperText>
           )}
@@ -107,11 +114,7 @@ const InputControl = ({
 
   return (
     <React.Fragment>
-      <Controller
-        name={name}
-        control={control}
-        render={renderInput}
-      />
+      <Controller name={name} control={control} render={renderInput} />
     </React.Fragment>
   );
 };

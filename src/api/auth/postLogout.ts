@@ -1,13 +1,12 @@
-import { AbstractResponse, post } from '../utils';
+const delay = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
 
 const postLogout = async (userId: string) => {
-  const response = await post<AbstractResponse>('/api/logout', { userId });
-
-  if (response.statusCode !== 200) {
-    throw response;
-  }
-
-  return response;
+  return delay(1000).then(() => ({
+    statusCode: 200,
+    userId,
+  }));
 };
 
 export default postLogout;

@@ -46,4 +46,5 @@ const uiSlice = createSlice({
 
 export const ui = uiSlice.reducer;
 
-export const { openSnackbar, closeSnackbar, startLoading, endLoading } = uiSlice.actions;
+export const { openSnackbar, closeSnackbar, startLoading, endLoading } =
+  uiSlice.actions;

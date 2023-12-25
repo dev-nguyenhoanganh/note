@@ -1,4 +1,4 @@
-import { AbstractResponse, post } from '../utils';
+import { AbstractResponse } from '../utils';
 
 export interface LoginPayload {
   username: string;
@@ -25,13 +25,30 @@ interface PostLoginResponse extends AbstractResponse {
   data: DataLogin;
 }
 
-const postLogin = async (user: LoginPayload) => {
-  const response = await post<PostLoginResponse>('/api/login', user);
-  if (response.statusCode !== 200) {
-    throw response;
-  }
+const delay = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
 
-  return response;
+const postLogin = async (user: LoginPayload) => {
+  return delay(1000).then(
+    () =>
+      ({
+        statusCode: 200,
+        data: {
+          user: {
+            id: 'id',
+            photoUrl: '/assets/images/avatars/avatar_10.jpg',
+            displayName: user.username,
+            username: user.username,
+            email: 'admin@example.com',
+            phone: 'phone',
+            role: 'admin',
+          },
+          token: 'token',
+          refreshToken: 'refreshToken',
+        },
+      } as PostLoginResponse),
+  );
 };
 
 export default postLogin;

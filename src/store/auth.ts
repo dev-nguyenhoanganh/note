@@ -29,7 +29,10 @@ const initialState: AuthState = {
 
 export const login = createAsyncThunk(
   'auth/login',
-  async ({ username, password, remember }: UserLoginProps, { rejectWithValue }) => {
+  async (
+    { username, password, remember }: UserLoginProps,
+    { rejectWithValue },
+  ) => {
     try {
       const response = await postLogin({ username, password });
 
@@ -41,21 +44,24 @@ export const login = createAsyncThunk(
     } catch (e) {
       return rejectWithValue(e);
     }
-  }
+  },
 );
 
-export const logout = createAsyncThunk('auth/logout', async (userId: string, { rejectWithValue }) => {
-  try {
-    const response = await postLogout(userId);
-    if (response.statusCode === 200) {
-      return true;
-    }
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async (userId: string, { rejectWithValue }) => {
+    try {
+      const response = await postLogout(userId);
+      if (response.statusCode === 200) {
+        return true;
+      }
 
-    return rejectWithValue(response);
-  } catch (e) {
-    return rejectWithValue(e);
-  }
-});
+      return rejectWithValue(response);
+    } catch (e) {
+      return rejectWithValue(e);
+    }
+  },
+);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -78,7 +84,7 @@ const authSlice = createSlice({
       }
 
       if (user) {
-        state.user = JSON.parse(atob(user));
+        state.user = JSON.parse(user);
       }
 
       state.token = token || '';
@@ -103,13 +109,13 @@ const authSlice = createSlice({
       if (payload.remember) {
         localStorage.setItem('refreshToken', payload.refreshToken);
         localStorage.setItem('token', payload.token);
-        localStorage.setItem('user', btoa(JSON.stringify(loginUser)));
+        localStorage.setItem('user', JSON.stringify(loginUser));
         return;
       }
 
       sessionStorage.setItem('refreshToken', payload.refreshToken);
       sessionStorage.setItem('token', payload.token);
-      sessionStorage.setItem('user', btoa(JSON.stringify(loginUser)));
+      sessionStorage.setItem('user', JSON.stringify(loginUser));
     });
     builder.addCase(login.rejected, (_, action) => {
       throw action.payload;
