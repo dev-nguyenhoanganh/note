@@ -6,22 +6,21 @@ import '@fullcalendar/react/dist/vdom';
 import FullCalendar, { EventContentArg, EventInput } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import jaLocale from '@fullcalendar/core/locales/ja';
-import interactionPlugin from '@fullcalendar/interaction';
 
 // Utils
 const StyledCalendar = styled(Card)(({ theme }) => ({
-  backgroundColor: alpha(
-    theme.palette.background.paper,
-    theme.palette.mode === 'dark' ? 0.1 : 0.8,
-  ),
+  backgroundColor: alpha(theme.palette.background.paper, theme.palette.mode === 'dark' ? 0.1 : 0.8),
   backdropFilter: 'blur(135px)',
   padding: theme.spacing(3),
   height: '485px',
   '& table': {
-    backgroundColor: '#fff',
+    backgroundColor: alpha(theme.palette.common.white, theme.palette.mode === 'dark' ? 0.05 : 0.4),
     border: 'none !important',
-    borderRadis: '8px',
-    overFlow: 'hidden',
+  },
+
+  '.fc thead th': {
+    fontWeight: 'bold',
+    backgroundColor: alpha(theme.palette.common.white, theme.palette.mode === 'dark' ? 0.05 : 0.5),
   },
 
   '& table tbody tr:last-child td': {
@@ -29,10 +28,10 @@ const StyledCalendar = styled(Card)(({ theme }) => ({
   },
 
   '.fc-day-sat': {
-    backgroundColor: '#f8fdff',
+    backgroundColor: alpha('#47a5d7', 0.3),
   },
   '.fc-day-sun': {
-    backgroundColor: '#fff9f9',
+    backgroundColor: alpha('#e05e5e', 0.3),
   },
 
   '.fc-daygrid-day-number': {
@@ -49,10 +48,6 @@ const StyledCalendar = styled(Card)(({ theme }) => ({
   // '.fc .fc-toolbar': {
   //   display: 'none',
   // },
-
-  '.fc thead th': {
-    fontWeight: 'bold',
-  },
 
   '.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events': {
     minHeight: '20px',
@@ -98,35 +93,21 @@ interface Props {
 export function CalendarMonth({ events = [] }: Props): JSX.Element {
   const calendarRef = useRef<FullCalendar>(null);
 
-  const renderEventContent = ({
-    event: { title, display },
-  }: EventContentArg) => {
+  const renderEventContent = ({ event: { title, display } }: EventContentArg) => {
     if (display === 'background') {
       return (
         <div className="p-[8px] max-w-[85%]">
-          <Tooltip
-            title={title}
-            PopperProps={{ style: { zIndex: 10000, maxWidth: '230px' } }}
-            arrow
-          >
-            <p className="whitespace-nowrap w-fit overflow-hidden text-ellipsis text-[13px] text-[#e05e5e]">
-              {title}
-            </p>
+          <Tooltip title={title} PopperProps={{ style: { zIndex: 10000, maxWidth: '230px' } }} arrow>
+            <p className="whitespace-nowrap w-fit overflow-hidden text-ellipsis text-[13px] text-[#e05e5e]">{title}</p>
           </Tooltip>
         </div>
       );
     }
 
     return (
-      <Tooltip
-        title={title}
-        PopperProps={{ style: { zIndex: 10000, maxWidth: '230px' } }}
-        arrow
-      >
+      <Tooltip title={title} PopperProps={{ style: { zIndex: 10000, maxWidth: '230px' } }} arrow>
         <div className="relative w-full">
-          <p className="whitespace-nowrap overflow-hidden text-ellipsis text-[13px]">
-            {title}
-          </p>
+          <p className="whitespace-nowrap overflow-hidden text-ellipsis text-[13px]">{title}</p>
         </div>
       </Tooltip>
     );
@@ -136,7 +117,7 @@ export function CalendarMonth({ events = [] }: Props): JSX.Element {
     <StyledCalendar>
       <FullCalendar
         ref={calendarRef}
-        plugins={[dayGridPlugin, interactionPlugin]}
+        plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
         locales={[jaLocale]}
         locale="ja"

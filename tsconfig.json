@@ -7,7 +7,6 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "typeRoots": ["node_modules/@types", "types"],
-
     /* Bundler mode */
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
@@ -23,6 +22,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
+  "types": ["node", "jest", "@testing-library/jest-dom"],
   "include": ["src", "types"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
