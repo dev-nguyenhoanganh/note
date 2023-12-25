@@ -1,11 +1,15 @@
 // import '@testing-library/jest-dom';
-import { act, fireEvent } from '@testing-library/react';
-
+import { act } from '@testing-library/react';
 import App from './App';
 import { render } from './test-utils-intl';
 
-test('Case 5: Session state is not available', async () => {
-  await act(async () => {
-    render(<App />);
+jest.mock('@fontsource/public-sans', () => {});
+jest.mock('./style.css', () => {});
+
+describe('Describe 1: Test Login Page', () => {
+  test('Case 1: Display sucess', async () => {
+    await act(async () => {
+      render(<App />);
+    });
   });
 });

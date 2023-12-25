@@ -17,9 +17,16 @@ interface InputControlProps {
   name: string;
   initValue?: string;
   type?: 'password' | 'text';
+  dataTestId: string;
 }
 
-const InputControl = ({ label, name, initValue = '', type = 'text' }: InputControlProps) => {
+const InputControl = ({
+  label,
+  name,
+  initValue = '',
+  type = 'text',
+  dataTestId,
+}: InputControlProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -40,7 +47,11 @@ const InputControl = ({ label, name, initValue = '', type = 'text' }: InputContr
       if (type === 'text') {
         return (
           <TextField
-            inputProps={{ ...field, 'aria-label': name }}
+            inputProps={{
+              ...field,
+              'aria-label': name,
+              'data-testid': dataTestId,
+            }}
             error={Boolean(errors[name])}
             sx={{
               '&>.Mui-error>input': { background: '#FFF2F7' },
@@ -61,17 +72,29 @@ const InputControl = ({ label, name, initValue = '', type = 'text' }: InputContr
             sx={{ '&.Mui-error': { background: '#FFF2F7' } }}
             type={showPassword ? 'text' : 'password'}
             error={Boolean(errors[name])}
-            inputProps={{ ...field, 'aria-label': name }}
+            inputProps={{
+              ...field,
+              'aria-label': name,
+              'data-testid': dataTestId,
+            }}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                <IconButton
+                  onClick={() => setShowPassword(!showPassword)}
+                  edge="end"
+                >
+                  <Iconify
+                    icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'}
+                  />
                 </IconButton>
               </InputAdornment>
             }
           />
           {errors[name]?.message && (
-            <FormHelperText error={Boolean(errors[name])} sx={{ fontSize: 'inherit' }}>
+            <FormHelperText
+              error={Boolean(errors[name])}
+              sx={{ fontSize: 'inherit' }}
+            >
               {errors[name]?.message as string}
             </FormHelperText>
           )}
@@ -79,12 +102,16 @@ const InputControl = ({ label, name, initValue = '', type = 'text' }: InputContr
       );
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [showPassword, errors]
+    [showPassword, errors],
   );
 
   return (
     <React.Fragment>
-      <Controller name={name} control={control} render={renderInput} />
+      <Controller
+        name={name}
+        control={control}
+        render={renderInput}
+      />
     </React.Fragment>
   );
 };
