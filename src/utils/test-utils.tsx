@@ -6,6 +6,7 @@ import ThemeProvider from '@/theme';
 import { IntlProvider } from 'react-intl';
 // Load resources
 import enMessage from '@/resources/lang/en.json';
+import { BrowserRouter } from 'react-router-dom';
 
 const loadLocaleData = (locale: string) => {
   switch (locale) {
@@ -32,13 +33,12 @@ export const renderWithProviders = (
   // A wrapper component that provides the theme and the store to the component
   function Wrapper({ children }: PropsWithChildren<object>): JSX.Element {
     return (
-      <IntlProvider
-        locale={'en'}
-        messages={messages}
-      >
-        <ThemeProvider>
-          <Provider store={store}>{children}</Provider>
-        </ThemeProvider>
+      <IntlProvider locale={'en'} messages={messages}>
+        <BrowserRouter>
+          <ThemeProvider>
+            <Provider store={store}>{children}</Provider>
+          </ThemeProvider>
+        </BrowserRouter>
       </IntlProvider>
     );
   }

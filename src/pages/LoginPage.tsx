@@ -30,7 +30,7 @@ const StyledContainer = styled(Box)(({ theme }) => ({
     height: '100vh',
     background: 'center/cover no-repeat url("/assets/Trees sprouted.jpg")',
     zIndex: '-1',
-    opacity: theme.palette.mode === 'dark' ? 0.5 : 1,
+    opacity: 1,
   },
   [theme.breakpoints.down('md')]: {
     padding: theme.spacing(2),
@@ -45,10 +45,7 @@ const StyledForm = styled(Paper)(({ theme }) => ({
   borderRadius: '16px',
   zIndex: 0,
   padding: theme.spacing(6, 3),
-  backgroundColor: alpha(
-    theme.palette.background.paper,
-    theme.palette.mode === 'dark' ? 0.1 : 0.8,
-  ),
+  backgroundColor: alpha(theme.palette.background.paper, 0.8),
   backdropFilter: 'blur(135px)',
 }));
 
@@ -65,10 +62,7 @@ const StyledSection = styled('div')(({ theme }: { theme: Theme }) => ({
   [theme.breakpoints.down('lg')]: {
     margin: 'auto',
     borderRadius: '16px',
-    backgroundColor: alpha(
-      theme.palette.background.paper,
-      theme.palette.mode === 'dark' ? 0.1 : 0.8,
-    ),
+    backgroundColor: alpha(theme.palette.background.paper, 0.8),
     backdropFilter: 'blur(135px)',
   },
 }));
@@ -107,19 +101,11 @@ export default function HomePage() {
 
       <StyledContainer>
         <StyledSection theme={theme}>
-          <Typography
-            data-testid="sign-in-label"
-            variant="h3"
-            sx={{ mt: 2, mb: 4 }}
-            gutterBottom
-          >
+          <Typography data-testid="sign-in-label" variant="h3" sx={{ mt: 2, mb: 4 }} gutterBottom>
             Sign in
           </Typography>
 
-          <Stack
-            direction="row"
-            spacing={2}
-          >
+          <Stack direction="row" spacing={2}>
             <Button
               fullWidth
               data-testid="google-button"
@@ -128,11 +114,7 @@ export default function HomePage() {
               variant="outlined"
               onClick={showMaintainMessage}
             >
-              <Iconify
-                icon="eva:google-fill"
-                color="#DF3E30"
-                width={22}
-              />
+              <Iconify icon="eva:google-fill" color="#DF3E30" width={22} />
             </Button>
 
             <Button
@@ -143,11 +125,7 @@ export default function HomePage() {
               variant="outlined"
               onClick={showMaintainMessage}
             >
-              <Iconify
-                icon="eva:facebook-fill"
-                color="#1877F2"
-                width={22}
-              />
+              <Iconify icon="eva:facebook-fill" color="#1877F2" width={22} />
             </Button>
 
             <Button
@@ -158,20 +136,12 @@ export default function HomePage() {
               variant="outlined"
               onClick={showMaintainMessage}
             >
-              <Iconify
-                icon="eva:twitter-fill"
-                color="#1C9CEA"
-                width={22}
-              />
+              <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={22} />
             </Button>
           </Stack>
 
           <Divider sx={{ my: 3 }}>
-            <Typography
-              data-testid="or-label"
-              variant="body2"
-              sx={{ color: 'text.secondary' }}
-            >
+            <Typography data-testid="or-label" variant="body2" sx={{ color: 'text.secondary' }}>
               OR
             </Typography>
           </Divider>
@@ -182,16 +152,10 @@ export default function HomePage() {
         {upLg && (
           <StyledForm>
             <StyledContent>
-              <Typography
-                variant="h3"
-                sx={{ px: 5, mt: 10, mb: 5 }}
-              >
+              <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
                 Hi, Welcome Back
               </Typography>
-              <LazyImage
-                src="/assets/illustrations/illustration_dashboard.png"
-                alt="login"
-              />
+              <LazyImage src="/assets/illustrations/illustration_dashboard.png" alt="login" />
             </StyledContent>
           </StyledForm>
         )}
