@@ -80,7 +80,7 @@ const StyledContent = styled('div')(() => ({
 const helmetData = new HelmetData({});
 
 export default function HomePage() {
-  const upLg = useResponsive('up', 'lg');
+  const upLg = useResponsive();
   const theme: Theme = useTheme();
   // const dispatch = useAppDispatch();
   const { formatMessage } = useIntl();

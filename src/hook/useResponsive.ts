@@ -5,9 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 // ----------------------------------------------------------------------
 
-export default function useResponsive(query: string, start: Breakpoint) {
-  const theme = useTheme();
-
+export default function useResponsive() {
   // const mediaUp = useMediaQuery(theme.breakpoints.up(start));
   // const mediaDown = useMediaQuery(theme.breakpoints.down(start));
   // const mediaOnly = useMediaQuery(theme.breakpoints.only(start));
