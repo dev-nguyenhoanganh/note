@@ -100,8 +100,6 @@ describe('Login component', () => {
         renderWithProviders(<LoginPage />);
       });
 
-      screen.debug();
-
       await act(async () => {
         const usernameInput = screen.getByTestId('username-input');
         fireEvent.change(usernameInput, {

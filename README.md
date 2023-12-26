@@ -26,3 +26,9 @@ npm start
 ```
 
 4. Bật trình duyệt web và truy cập vào URL: http://localhost:9000/
+
+5. Chạy test code (Jest)
+
+```bash
+npm run test
+```

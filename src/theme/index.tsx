@@ -37,8 +37,6 @@ export default function ThemeProvider({ customTheme, children }: ThemeProps) {
     return appTheme;
   }, [prefersDarkMode]);
 
-  console.log('theme', theme);
-
   return (
     <StyledEngineProvider injectFirst>
       <MUIThemeProvider theme={customTheme ?? theme}>
