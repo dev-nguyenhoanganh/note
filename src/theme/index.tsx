@@ -16,9 +16,10 @@ import { Theme } from '@/types';
 
 interface ThemeProps {
   children: JSX.Element | JSX.Element[];
+  customTheme?: Theme;
 }
 
-export default function ThemeProvider({ children }: ThemeProps) {
+export default function ThemeProvider({ customTheme, children }: ThemeProps) {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const theme = useMemo(() => {
@@ -38,7 +39,7 @@ export default function ThemeProvider({ children }: ThemeProps) {
 
   return (
     <StyledEngineProvider injectFirst>
-      <MUIThemeProvider theme={theme}>
+      <MUIThemeProvider theme={customTheme ?? theme}>
         <CssBaseline />
         <GlobalStyles />
         {children}

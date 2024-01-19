@@ -3,14 +3,16 @@ import LoginPage from './LoginPage';
 
 import { renderWithProviders } from '@/utils/test-utils';
 import { act } from 'react-dom/test-utils';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+
+const mockedNavigate = jest.fn();
 
 jest.mock('@fontsource/public-sans', () => {});
 
 jest.mock('react-router-dom', () => ({
   __esModule: true,
   ...jest.requireActual('react-router-dom'),
-  useNavigate: () => {},
+  useNavigate: () => mockedNavigate,
 }));
 
 describe('Login component', () => {
@@ -81,7 +83,7 @@ describe('Login component', () => {
     });
   });
 
-  describe('Function', () => {
+  describe('Actions', () => {
     test('should call login API when button is clicked', async () => {
       await act(async () => {
         renderWithProviders(<LoginPage />);
@@ -92,7 +94,43 @@ describe('Login component', () => {
         fireEvent.click(googleButton);
       });
     });
-    test('should navigate to home page when login is successful', () => {});
-    test('should store token in local storage when login is successful', () => {});
+
+    test('should navigate to home page when login is successful', async () => {
+      await act(async () => {
+        renderWithProviders(<LoginPage />);
+      });
+
+      await act(async () => {
+        const usernameInput = screen.getByTestId('username-input');
+        fireEvent.change(usernameInput, {
+          target: {
+            value: 'admin',
+          },
+        });
+      });
+
+      await act(async () => {
+        const passwordInput = screen.getByTestId('password-input');
+        fireEvent.change(passwordInput, {
+          target: {
+            value: '1111111',
+          },
+        });
+      });
+
+      await act(async () => {
+        const loginBtn = screen.getByTestId('login-button');
+        fireEvent.click(loginBtn);
+      });
+
+      await waitFor(
+        () => {
+          expect(mockedNavigate).toHaveBeenCalledWith('/', { replace: true });
+        },
+        {
+          timeout: 2000,
+        },
+      );
+    });
   });
 });

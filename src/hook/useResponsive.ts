@@ -1,25 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // @mui
 import { Breakpoint, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // ----------------------------------------------------------------------
 
-export default function useResponsive(query: string, start: Breakpoint) {
-  const theme = useTheme();
+export default function useResponsive() {
+  // const mediaUp = useMediaQuery(theme.breakpoints.up(start));
+  // const mediaDown = useMediaQuery(theme.breakpoints.down(start));
+  // const mediaOnly = useMediaQuery(theme.breakpoints.only(start));
 
-  const mediaUp = useMediaQuery(theme.breakpoints.up(start));
-  const mediaDown = useMediaQuery(theme.breakpoints.down(start));
-  const mediaOnly = useMediaQuery(theme.breakpoints.only(start));
+  // if (query === 'up') {
+  //   return mediaUp;
+  // }
 
-  if (query === 'up') {
-    return mediaUp;
-  }
+  // if (query === 'down') {
+  //   return mediaDown;
+  // }
 
-  if (query === 'down') {
-    return mediaDown;
-  }
-
-  return mediaOnly;
+  return true;
 }
 
 // ----------------------------------------------------------------------

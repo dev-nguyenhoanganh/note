@@ -43,7 +43,7 @@ export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
   const { user } = useAppSelector((state) => state.auth);
   const theme = useTheme();
 
-  const isDesktop = useResponsive('up', 'lg');
+  const isDesktop = useResponsive();
 
   useEffect(() => {
     if (openNav) {
@@ -90,10 +90,7 @@ export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
                 {user.displayName}
               </Typography>
 
-              <Typography
-                variant="body2"
-                sx={{ color: 'text.secondary', textTransform: 'capitalize' }}
-              >
+              <Typography variant="body2" sx={{ color: 'text.secondary', textTransform: 'capitalize' }}>
                 {user.role}
               </Typography>
             </Box>
@@ -112,10 +109,7 @@ export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
           justifyContent: 'center',
         }}
       >
-        <StyledCover
-          src={'/assets/illustrations/illustrations_nav_footer.svg'}
-          alt="Cover image"
-        />
+        <StyledCover src={'/assets/illustrations/illustrations_nav_footer.svg'} alt="Cover image" />
       </Box>
     </Scrollbar>
   );
@@ -137,10 +131,7 @@ export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
             sx: {
               width: NAV_WIDTH,
               borderRightStyle: 'dashed',
-              backgroundColor: alpha(
-                theme.palette.background.paper,
-                theme.palette.mode === 'dark' ? 0.1 : 0.8,
-              ),
+              backgroundColor: alpha(theme.palette.background.paper, theme.palette.mode === 'dark' ? 0.1 : 0.8),
               backdropFilter: 'blur(135px)',
             },
           }}
