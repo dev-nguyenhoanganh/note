@@ -1,9 +1,8 @@
 import { set, sub } from 'date-fns';
-import { faker } from '@faker-js/faker';
 
 export const NOTIFICATIONS = [
   {
-    id: faker.string.uuid(),
+    id: '1',
     title: 'Your order is placed',
     description: 'waiting for shipping',
     avatar: null,
@@ -12,8 +11,8 @@ export const NOTIFICATIONS = [
     isUnRead: true,
   },
   {
-    id: faker.string.uuid(),
-    title: faker.person.fullName(),
+    id: '1',
+    title: '1',
     description: 'answered to your comment on the Minimal',
     avatar: '/assets/images/avatars/avatar_2.jpg',
     type: 'friend_interactive',
@@ -21,7 +20,7 @@ export const NOTIFICATIONS = [
     isUnRead: true,
   },
   {
-    id: faker.string.uuid(),
+    id: '1',
     title: 'You have new message',
     description: '5 unread messages',
     avatar: null,
@@ -30,7 +29,7 @@ export const NOTIFICATIONS = [
     isUnRead: false,
   },
   {
-    id: faker.string.uuid(),
+    id: '1',
     title: 'You have new mail',
     description: 'sent from Guido Padberg',
     avatar: null,
@@ -39,7 +38,7 @@ export const NOTIFICATIONS = [
     isUnRead: false,
   },
   {
-    id: faker.string.uuid(),
+    id: '1',
     title: 'Delivery processing',
     description: 'Your order is being shipped',
     avatar: null,

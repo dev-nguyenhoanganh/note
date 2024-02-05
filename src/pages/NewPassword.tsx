@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, FormEvent, useState, useEffect } from 'react';
-import { Helmet, HelmetData } from 'react-helmet-async';
 import { useNavigate, Link as ReactLink, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { useSnackbar } from 'notistack';
@@ -59,10 +58,7 @@ const StyledContainer = styled(Paper)(({ theme }) => ({
   zIndex: 0,
   padding: '48px 24px',
   maxWidth: 480,
-  backgroundColor: alpha(
-    theme.palette.background.paper,
-    theme.palette.mode === 'dark' ? 0.1 : 0.8,
-  ),
+  backgroundColor: alpha(theme.palette.background.paper, theme.palette.mode === 'dark' ? 0.1 : 0.8),
   backdropFilter: 'blur(135px)',
 }));
 
@@ -81,7 +77,6 @@ const StyledContent = styled('div')({
 
 // ----------------------------------------------------------------------
 
-const helmetData = new HelmetData({});
 const INPUT_SIZE = 6;
 
 interface FormData extends FieldValues {
@@ -102,9 +97,7 @@ export default function NewPassword() {
   const [linkLoading, setLinkLoading] = useState(false);
 
   const validationSchema = object<FormData>().shape({
-    code: string()
-      .required(message['validate.required'])
-      .length(INPUT_SIZE, message['validate.required']),
+    code: string().required(message['validate.required']).length(INPUT_SIZE, message['validate.required']),
     password: string().required(message['validate.required']),
     confirmPassword: array()
       .test({
@@ -115,8 +108,7 @@ export default function NewPassword() {
       .test({
         name: 'Confirm password mismatch',
         message: message['validate.password.mismatch'],
-        test: ([password, confirmPassword] = []) =>
-          password === confirmPassword,
+        test: ([password, confirmPassword] = []) => password === confirmPassword,
       }),
   });
 
@@ -218,10 +210,6 @@ export default function NewPassword() {
 
   return (
     <React.Fragment>
-      <Helmet helmetData={helmetData}>
-        <title>New Password</title>
-      </Helmet>
-
       {linkLoading && <Loading fullWidth={true} />}
 
       <StyledForm onSubmit={handleSubmit}>
@@ -229,10 +217,7 @@ export default function NewPassword() {
           <StyledContainer>
             <StyledContent>
               <Stack mb={3} justifyContent="center" alignItems="center">
-                <StyledImage
-                  src="/assets/illustrations/illustration_email.svg"
-                  alt="login"
-                />
+                <StyledImage src="/assets/illustrations/illustration_email.svg" alt="login" />
               </Stack>
 
               <Stack mb={5} justifyContent="center" alignItems="center">
@@ -240,55 +225,26 @@ export default function NewPassword() {
                   Request sent successfully!
                 </Typography>
                 <Typography variant="body1" textAlign="center">
-                  We&apos;ve sent a 6-digit confirmation email to your email.
-                  Please enter the code in below box to verify your email.
+                  We&apos;ve sent a 6-digit confirmation email to your email. Please enter the code in below box to
+                  verify your email.
                 </Typography>
               </Stack>
 
               <Stack gap={3}>
                 <InputControl label="Email address" name="email" disabled />
                 <InputVerifyCode name="code" size={INPUT_SIZE} />
-                <InputControl
-                  label="Password"
-                  name="password"
-                  type="password"
-                />
-                <InputControl
-                  label="Confirm New Password"
-                  name="confirmPassword"
-                  type="password"
-                />
-                <LoadingButton
-                  fullWidth
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                  loading={loading}
-                >
+                <InputControl label="Password" name="password" type="password" />
+                <InputControl label="Confirm New Password" name="confirmPassword" type="password" />
+                <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={loading}>
                   Update Password
                 </LoadingButton>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  gap="6px"
-                >
+                <Box display="flex" alignItems="center" justifyContent="center" gap="6px">
                   Don’t have a code?
-                  <Link
-                    underline="hover"
-                    variant="body1"
-                    textAlign="center"
-                    onClick={handleResendCode}
-                  >
+                  <Link underline="hover" variant="body1" textAlign="center" onClick={handleResendCode}>
                     Resend code
                   </Link>
                 </Box>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  gap="4px"
-                >
+                <Box display="flex" alignItems="center" justifyContent="center" gap="4px">
                   <Iconify icon="grommet-icons:form-previous" color="inherit" />
                   <Link
                     underline="hover"

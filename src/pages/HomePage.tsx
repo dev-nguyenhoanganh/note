@@ -1,5 +1,3 @@
-import { Helmet, HelmetData } from 'react-helmet-async';
-import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme, Theme } from '@mui/material/styles';
 import { Grid, Container, alpha, Typography } from '@mui/material';
@@ -17,8 +15,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 // ----------------------------------------------------------------------
 
-const helmetData = new HelmetData({});
-
 export default function DashboardAppPage() {
   const theme = useTheme();
   const formConfig = useForm({
@@ -29,10 +25,6 @@ export default function DashboardAppPage() {
 
   return (
     <>
-      <Helmet helmetData={helmetData}>
-        <title> Dashboard </title>
-      </Helmet>
-
       <Container maxWidth="xl">
         <FormProvider {...formConfig}>
           <Typography
@@ -53,10 +45,7 @@ export default function DashboardAppPage() {
                 title="Website Visits"
                 subheader="(+43%) than last year"
                 sx={(theme: Theme) => ({
-                  backgroundColor: alpha(
-                    theme.palette.background.paper,
-                    theme.palette.mode === 'dark' ? 0.1 : 0.8,
-                  ),
+                  backgroundColor: alpha(theme.palette.background.paper, theme.palette.mode === 'dark' ? 0.1 : 0.8),
                   backdropFilter: 'blur(135px)',
                 })}
                 chartLabels={[
@@ -103,19 +92,10 @@ export default function DashboardAppPage() {
               <AppNewsUpdate
                 title="News Update"
                 sx={(theme: Theme) => ({
-                  backgroundColor: alpha(
-                    theme.palette.background.paper,
-                    theme.palette.mode === 'dark' ? 0.1 : 0.8,
-                  ),
+                  backgroundColor: alpha(theme.palette.background.paper, theme.palette.mode === 'dark' ? 0.1 : 0.8),
                   backdropFilter: 'blur(135px)',
                 })}
-                list={[...Array(5)].map((_, index) => ({
-                  id: faker.string.uuid(),
-                  title: faker.person.jobTitle(),
-                  description: faker.person.jobTitle(),
-                  image: `/assets/images/covers/cover_${index + 1}.jpg`,
-                  postedAt: faker.date.recent(),
-                }))}
+                list={[]}
               />
             </Grid>
 
@@ -123,10 +103,7 @@ export default function DashboardAppPage() {
               <AppCurrentVisits
                 title="Current Visits"
                 sx={(theme: Theme) => ({
-                  backgroundColor: alpha(
-                    theme.palette.background.paper,
-                    theme.palette.mode === 'dark' ? 0.1 : 0.8,
-                  ),
+                  backgroundColor: alpha(theme.palette.background.paper, theme.palette.mode === 'dark' ? 0.1 : 0.8),
                   backdropFilter: 'blur(135px)',
                   height: '100%',
                 })}
@@ -149,10 +126,7 @@ export default function DashboardAppPage() {
               <AppTasks
                 title="Tasks"
                 sx={(theme: Theme) => ({
-                  backgroundColor: alpha(
-                    theme.palette.background.paper,
-                    theme.palette.mode === 'dark' ? 0.1 : 0.8,
-                  ),
+                  backgroundColor: alpha(theme.palette.background.paper, theme.palette.mode === 'dark' ? 0.1 : 0.8),
                   backdropFilter: 'blur(135px)',
                   height: '100%',
                 })}
@@ -170,14 +144,11 @@ export default function DashboardAppPage() {
               <AppOrderTimeline
                 title="Order Timeline"
                 sx={(theme: Theme) => ({
-                  backgroundColor: alpha(
-                    theme.palette.background.paper,
-                    theme.palette.mode === 'dark' ? 0.1 : 0.8,
-                  ),
+                  backgroundColor: alpha(theme.palette.background.paper, theme.palette.mode === 'dark' ? 0.1 : 0.8),
                   backdropFilter: 'blur(135px)',
                 })}
                 list={[...Array(3)].map((_, index) => ({
-                  id: faker.string.uuid(),
+                  id: index + 'a',
                   title: [
                     '1983, orders, $4220',
                     '12 Invoices have been paid',
@@ -186,7 +157,7 @@ export default function DashboardAppPage() {
                     'New order placed #XF-2346',
                   ][index],
                   type: `order${index + 1}`,
-                  time: faker.date.past(),
+                  time: new Date(),
                 }))}
               />
             </Grid>

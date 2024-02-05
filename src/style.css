@@ -101,3 +101,52 @@
 .background.down-scroll + .background:not(.down-scroll) .content-wrapper {
   transform: translateY(40vh / 2);
 }
+
+#apexchart-tooltip.tooltip {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid;
+  position: absolute;
+  transform: translate(8px, -100%);
+}
+
+#apexchart-tooltip.tooltip.--danger {
+  border-color: #ff5630;
+}
+
+#apexchart-tooltip.tooltip.--danger path,
+#apexchart-tooltip.tooltip.--danger svg {
+  fill: #ff5630;
+}
+
+#apexchart-tooltip.tooltip.--normal {
+  border-color: #00ab55;
+}
+
+#apexchart-tooltip.tooltip.--normal path,
+#apexchart-tooltip.tooltip.--normal svg {
+  fill: #00ab55;
+}
+
+.apexcharts-data-labels > rect {
+  rx: 8;
+  ry: 8;
+  width: 16px;
+  height: 16px;
+}
+
+.apexcharts-data-labels > text {
+  fill: transparent;
+}
+
+@media (max-width: 760px) {
+  #apexchart-tooltip.tooltip {
+    width: 40px;
+    height: 40px;
+    display: flex;
+  }
+}

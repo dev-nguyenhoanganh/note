@@ -2,7 +2,7 @@ import { Theme as MuiTheme, Palette as MuiPalette, PaletteColor as MuiPaletteCol
 import { CustomShadow } from './CustomShadow';
 
 export interface PaletteColor extends MuiPaletteColor {
-  lighter: string;
+     lighter: string;
   darker: string;
 }
 

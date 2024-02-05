@@ -8,17 +8,24 @@ import StyledChart from '@/components/chart/styles';
 import { SnackbarProvider } from '@/components/snackbar';
 
 import './style.css';
+import { Suspense } from 'react';
+import { Loading } from '@/components/loading';
+import { ErrorBoundary } from '@/pages/Error';
 
 const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <ThemeProvider>
-          <SnackbarProvider>
-            <Router />
-            <StyledChart />
-          </SnackbarProvider>
-        </ThemeProvider>
+        <ErrorBoundary>
+          <ThemeProvider>
+            <SnackbarProvider>
+              <Suspense fallback={<Loading />}>
+                <Router />
+              </Suspense>
+              <StyledChart />
+            </SnackbarProvider>
+          </ThemeProvider>
+        </ErrorBoundary>
       </BrowserRouter>
     </Provider>
   );

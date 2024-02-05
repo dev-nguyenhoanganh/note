@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import { useTheme, alpha } from '@mui/material/styles';
+import { ApexOptions } from 'apexcharts';
 
 import { Theme } from '@/types';
 
@@ -8,24 +9,24 @@ import { Theme } from '@/types';
 export default function useChart(options: unknown) {
   const theme: Theme = useTheme();
 
-  const LABEL_TOTAL = {
-    show: true,
-    label: 'Total',
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.subtitle2.fontSize,
-    fontWeight: theme.typography.subtitle2.fontWeight,
-    lineHeight: theme.typography.subtitle2.lineHeight,
-  };
+  // const LABEL_TOTAL = {
+  //   show: true,
+  //   label: 'Total',
+  //   color: theme.palette.text.secondary,
+  //   fontSize: theme.typography.subtitle2.fontSize,
+  //   fontWeight: theme.typography.subtitle2.fontWeight,
+  //   lineHeight: theme.typography.subtitle2.lineHeight,
+  // };
 
-  const LABEL_VALUE = {
-    offsetY: 8,
-    color: theme.palette.text.primary,
-    fontSize: theme.typography.h3.fontSize,
-    fontWeight: theme.typography.h3.fontWeight,
-    lineHeight: theme.typography.h3.lineHeight,
-  };
+  // const LABEL_VALUE = {
+  //   offsetY: 8,
+  //   color: theme.palette.text.primary,
+  //   fontSize: theme.typography.h3.fontSize,
+  //   fontWeight: theme.typography.h3.fontWeight,
+  //   lineHeight: theme.typography.h3.lineHeight,
+  // };
 
-  const baseOptions = {
+  const baseOptions: ApexOptions = {
     // Colors
     colors: [
       theme.palette.primary.main,
@@ -76,9 +77,6 @@ export default function useChart(options: unknown) {
       },
     },
 
-    // Datalabels
-    dataLabels: { enabled: false },
-
     // Stroke
     stroke: {
       width: 3,
@@ -112,14 +110,14 @@ export default function useChart(options: unknown) {
     // Tooltip
     tooltip: {
       x: {
-        show: false,
+        show: true,
       },
     },
 
     // Legend
     legend: {
       show: true,
-      fontSize: String(13),
+      fontSize: '13',
       position: 'top',
       horizontalAlign: 'right',
       markers: {
@@ -147,8 +145,8 @@ export default function useChart(options: unknown) {
         donut: {
           labels: {
             show: true,
-            value: LABEL_VALUE,
-            total: LABEL_TOTAL,
+            // value: LABEL_VALUE,
+            // total: LABEL_TOTAL,
           },
         },
       },
@@ -160,8 +158,8 @@ export default function useChart(options: unknown) {
           background: alpha(theme.palette.grey[500], 0.16),
         },
         dataLabels: {
-          value: LABEL_VALUE,
-          total: LABEL_TOTAL,
+          // value: LABEL_VALUE,
+          // total: LABEL_TOTAL,
         },
       },
 

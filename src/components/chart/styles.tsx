@@ -17,10 +17,9 @@ export default function StyledChart() {
       // Tooltip
       '.apexcharts-xaxistooltip': {
         ...bgBlur({ color: theme.palette.background.default }),
-        border: 0,
         color: theme.palette.text.primary,
         boxShadow: theme.customShadows.dropdown,
-        borderRadius: Number(theme.shape.borderRadius) * 1.5,
+        border: 0,
         '&:before': { borderBottomColor: 'transparent' },
         '&:after': { borderBottomColor: alpha(theme.palette.background.default, 0.8) },
       },
@@ -28,7 +27,7 @@ export default function StyledChart() {
         ...bgBlur({ color: theme.palette.background.default }),
         border: 0,
         boxShadow: theme.customShadows.dropdown,
-        borderRadius: Number(theme.shape.borderRadius) * 1.5,
+        borderRadius: '50%',
         '.apexcharts-tooltip-title': {
           border: 0,
           textAlign: 'center',

@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useState, FormEvent } from 'react';
-import { Helmet, HelmetData } from 'react-helmet-async';
 import { useNavigate, Link as ReactLink } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
@@ -57,10 +56,7 @@ const StyledContainer = styled(Paper)(({ theme }) => ({
   zIndex: 0,
   padding: '40px 24px',
   maxWidth: '420px',
-  backgroundColor: alpha(
-    theme.palette.background.paper,
-    theme.palette.mode === 'dark' ? 0.1 : 0.8,
-  ),
+  backgroundColor: alpha(theme.palette.background.paper, theme.palette.mode === 'dark' ? 0.1 : 0.8),
   backdropFilter: 'blur(135px)',
 }));
 
@@ -79,8 +75,6 @@ const StyledContent = styled('div')(() => ({
 
 // ----------------------------------------------------------------------
 
-const helmetData = new HelmetData({});
-
 interface FormData {
   email: string;
 }
@@ -93,9 +87,7 @@ export default function ResetPassword() {
   const [loading, setLoading] = useState(false);
 
   const validationSchema = object<FormData>().shape({
-    email: string()
-      .required(message['validate.required'])
-      .email(message['validate.email']),
+    email: string().required(message['validate.required']).email(message['validate.email']),
   });
 
   const formConfig = useForm<FormData>({
@@ -148,19 +140,12 @@ export default function ResetPassword() {
 
   return (
     <React.Fragment>
-      <Helmet helmetData={helmetData}>
-        <title>Reset password</title>
-      </Helmet>
-
       <StyledForm onSubmit={handleSubmit}>
         <FormProvider {...formConfig}>
           <StyledContainer>
             <StyledContent>
               <Stack mb={3} justifyContent="center" alignItems="center">
-                <StyledImage
-                  src="/assets/icons/ic_password.svg"
-                  alt="login"
-                ></StyledImage>
+                <StyledImage src="/assets/icons/ic_password.svg" alt="login"></StyledImage>
               </Stack>
 
               <Stack mb={5} justifyContent="center" alignItems="center">
@@ -168,28 +153,17 @@ export default function ResetPassword() {
                   Forgot your password?
                 </Typography>
                 <Typography variant="body1" textAlign="center">
-                  Please enter the email address associated with your account,
-                  and we will email you a link to reset your password.
+                  Please enter the email address associated with your account, and we will email you a link to reset
+                  your password.
                 </Typography>
               </Stack>
 
               <Stack gap={3}>
                 <InputControl label="Email address" name="email" />
-                <LoadingButton
-                  fullWidth
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                  loading={loading}
-                >
+                <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={loading}>
                   Reset Password
                 </LoadingButton>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  gap="4px"
-                >
+                <Box display="flex" alignItems="center" justifyContent="center" gap="4px">
                   <Iconify icon="grommet-icons:form-previous" color="inherit" />
                   <Link
                     underline="hover"

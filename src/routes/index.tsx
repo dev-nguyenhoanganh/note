@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
@@ -7,7 +7,8 @@ import ProtectRoutes from '@/components/layouts/ProtectRoutes';
 import SimpleLayout from '@/components/layouts/SimpleLayout';
 
 // Pages
-import HomePage from '@/pages/HomePage';
+const HomePage = lazy(() => import('@/pages/HomePage'));
+// import HomePage from '@/pages/HomePage';
 import LoginPage from '@/pages/LoginPage';
 import Page404 from '@/pages/Page404';
 import NewPassword from '@/pages/NewPassword';
