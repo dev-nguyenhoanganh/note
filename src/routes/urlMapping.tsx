@@ -14,6 +14,7 @@ export enum URL_MAPPING {
   LOGIN = '/login',
   RESET_PASSWORD = '/reset-password',
   NEW_PASSWORD = '/new-password',
+  BLOOD_REPORT = '/blood-report',
 
   // Not implement yet
   HOME_PAGE_URL = '/home',
@@ -25,12 +26,7 @@ export enum URL_MAPPING {
 
 // ----------------------------------------------------------------------
 
-const icon = (name: string) => (
-  <SvgColor
-    src={`/assets/icons/navbar/${name}.svg`}
-    sx={{ width: 1, height: 1 }}
-  />
-);
+const icon = (name: string) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
 
 export const navConfig = [
   {

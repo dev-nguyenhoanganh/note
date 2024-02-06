@@ -8,7 +8,7 @@ import SimpleLayout from '@/components/layouts/SimpleLayout';
 
 // Pages
 const HomePage = lazy(() => import('@/pages/HomePage'));
-// import HomePage from '@/pages/HomePage';
+const BloodReport = lazy(() => import('@/pages/BloodReport'));
 import LoginPage from '@/pages/LoginPage';
 import Page404 from '@/pages/Page404';
 import NewPassword from '@/pages/NewPassword';
@@ -41,6 +41,7 @@ export default function Router() {
       <Route path={URL_MAPPING.LOGIN} element={<LoginPage />} />
       <Route path={URL_MAPPING.RESET_PASSWORD} element={<ResetPassword />} />
       <Route path={URL_MAPPING.NEW_PASSWORD} element={<NewPassword />} />
+      <Route path={URL_MAPPING.BLOOD_REPORT} element={<BloodReport />} />
 
       <Route path={URL_MAPPING.ROOT} element={<ProtectRoutes />}>
         <Route path={URL_MAPPING.ROOT} element={<HomePage />} />

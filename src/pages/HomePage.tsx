@@ -3,13 +3,7 @@ import { useTheme, Theme } from '@mui/material/styles';
 import { Grid, Container, alpha, Typography } from '@mui/material';
 
 // sections
-import {
-  AppTasks,
-  AppNewsUpdate,
-  AppOrderTimeline,
-  AppCurrentVisits,
-  AppWebsiteVisits,
-} from '@/sections/@dashboard/app';
+import { AppTasks, AppNewsUpdate, AppOrderTimeline, AppCurrentVisits } from '@/sections/@dashboard/app';
 import { CalendarMonth } from '@/components/calendar/CalendarMonth';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -40,7 +34,7 @@ export default function DashboardAppPage() {
           </Typography>
 
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
+            {/* <Grid item xs={12} md={6} lg={8}>
               <AppWebsiteVisits
                 title="Website Visits"
                 subheader="(+43%) than last year"
@@ -82,7 +76,7 @@ export default function DashboardAppPage() {
                   },
                 ]}
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xs={12} md={6} lg={4}>
               <CalendarMonth />
