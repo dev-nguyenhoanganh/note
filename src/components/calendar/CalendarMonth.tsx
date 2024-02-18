@@ -1,6 +1,8 @@
 import { useRef } from 'react';
-import { Tooltip, Card } from '@mui/material';
+import { Card } from '@mui/material';
 import { alpha, styled } from '@mui/material/styles';
+
+import { isSaturday, previousSunday, nextSaturday, isSunday } from 'date-fns';
 
 import '@fullcalendar/react/dist/vdom';
 import FullCalendar, { EventContentArg, EventInput } from '@fullcalendar/react';
@@ -12,7 +14,9 @@ const StyledCalendar = styled(Card)(({ theme }) => ({
   backgroundColor: alpha(theme.palette.background.paper, theme.palette.mode === 'dark' ? 0.1 : 0.8),
   backdropFilter: 'blur(135px)',
   padding: theme.spacing(3),
-  height: '485px',
+  borderRadius: '16px',
+
+  overflow: 'hidden',
   '& table': {
     backgroundColor: alpha(theme.palette.common.white, theme.palette.mode === 'dark' ? 0.05 : 0.4),
     border: 'none !important',
@@ -45,10 +49,6 @@ const StyledCalendar = styled(Card)(({ theme }) => ({
     color: '#e05e5e',
   },
 
-  // '.fc .fc-toolbar': {
-  //   display: 'none',
-  // },
-
   '.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events': {
     minHeight: '20px',
     marginBottom: 0,
@@ -64,10 +64,18 @@ const StyledCalendar = styled(Card)(({ theme }) => ({
     backgroundColor: 'inherit',
   },
 
+  '.fc-daygrid-day-top': {
+    justifyContent: 'center',
+  },
+
+  '.workout-value': {
+    margin: 0,
+  },
+
   '.fc-col-header-cell': {
     height: '20px',
     fontWeight: 400,
-    borderTop: 'none',
+    // borderTop: 'none',
     borderBottom: 'none',
   },
 
@@ -82,6 +90,14 @@ const StyledCalendar = styled(Card)(({ theme }) => ({
   '.fc-h-event .fc-event-main': {
     color: '#000',
   },
+
+  '.fc .hidden-cell tbody': {
+    display: 'none',
+  },
+
+  '.fc-day-disabled': {
+    display: 'none',
+  },
 }));
 
 interface Props {
@@ -93,23 +109,11 @@ interface Props {
 export function CalendarMonth({ events = [] }: Props): JSX.Element {
   const calendarRef = useRef<FullCalendar>(null);
 
-  const renderEventContent = ({ event: { title, display } }: EventContentArg) => {
-    if (display === 'background') {
-      return (
-        <div className="p-[8px] max-w-[85%]">
-          <Tooltip title={title} PopperProps={{ style: { zIndex: 10000, maxWidth: '230px' } }} arrow>
-            <p className="whitespace-nowrap w-fit overflow-hidden text-ellipsis text-[13px] text-[#e05e5e]">{title}</p>
-          </Tooltip>
-        </div>
-      );
-    }
-
+  const renderEventContent = ({ event: { title } }: EventContentArg) => {
     return (
-      <Tooltip title={title} PopperProps={{ style: { zIndex: 10000, maxWidth: '230px' } }} arrow>
-        <div className="relative w-full">
-          <p className="whitespace-nowrap overflow-hidden text-ellipsis text-[13px]">{title}</p>
-        </div>
-      </Tooltip>
+      <div className="relative w-full">
+        <p className="workout-value">{title}</p>
+      </div>
     );
   };
 
@@ -117,23 +121,70 @@ export function CalendarMonth({ events = [] }: Props): JSX.Element {
     <StyledCalendar>
       <FullCalendar
         ref={calendarRef}
-        plugins={[dayGridPlugin]}
+        plugins={[dayGridPlugin]} // Cần phải khai báo plugin để sử dụng Week view
         initialView="dayGridMonth"
+        locales={[jaLocale]}
+        duration={{ weeks: 2, month: 1 }} // Xác định khoảng thời gian là 2 tuần
+        headerToolbar={{ center: 'title', end: undefined, start: undefined }}
+        validRange={{
+          start: isSunday(new Date()) ? new Date() : previousSunday(new Date()),
+          end: isSaturday(new Date()) ? nextSaturday(new Date()) : nextSaturday(nextSaturday(new Date())),
+        }} // Đảm bảo người dùng không thể chuyển qua các tuần khác
+        events={events}
+        eventContent={renderEventContent}
+        dayCellContent={({ dayNumberText }) => {
+          return dayNumberText.replace('日', '');
+        }}
+        dayMaxEventRows={true}
+      />
+      {/* <FullCalendar
+        ref={calendarRef}
+        plugins={[dayGridPlugin]}
+        initialView="dayGridWeek"
         locales={[jaLocale]}
         locale="ja"
         height="auto"
-        firstDay={1}
-        selectable={true}
+        headerToolbar={{ center: 'title', end: undefined, start: undefined }}
+        firstDay={0}
+        dayHeaderFormat={{ weekday: 'short' }}
+        selectable={false}
+        viewClassNames="hidden-cell"
+      />
+      <FullCalendar
+        ref={calendarRef}
+        plugins={[dayGridPlugin, timeGridPlugin]}
+        initialView="dayGridWeek"
+        locales={[jaLocale]}
+        locale="ja"
+        height="auto"
+        headerToolbar={false}
+        firstDay={0}
+        dayHeaderFormat={{ day: '2-digit' }}
+        selectable={false}
         events={events}
         eventContent={renderEventContent}
-        fixedWeekCount={false}
-        dayCellContent={(args) => {
-          return args.dayNumberText.replace('日', '');
-        }}
-        moreLinkContent={() => {
-          return <a href="#">more</a>;
+        dayHeaderContent={({ text }) => {
+          return text.replace('日', '');
         }}
       />
+      <FullCalendar
+        ref={calendarRef}
+        plugins={[dayGridPlugin, timeGridPlugin]}
+        initialView="dayGridWeek"
+        locales={[jaLocale]}
+        locale="ja"
+        height="auto"
+        headerToolbar={false}
+        firstDay={0}
+        dayHeaderFormat={{ day: '2-digit' }}
+        selectable={false}
+        events={events}
+        initialDate={nextSunday(new Date())}
+        eventContent={renderEventContent}
+        dayHeaderContent={({ text }) => {
+          return text.replace('日', '');
+        }}
+      /> */}
     </StyledCalendar>
   );
 }
