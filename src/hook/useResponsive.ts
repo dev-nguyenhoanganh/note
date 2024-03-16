@@ -5,21 +5,24 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 // ----------------------------------------------------------------------
 
-export default function useResponsive() {
-  // const mediaUp = useMediaQuery(theme.breakpoints.up(start));
-  // const mediaDown = useMediaQuery(theme.breakpoints.down(start));
-  // const mediaOnly = useMediaQuery(theme.breakpoints.only(start));
+export default function useResponsive(query: string, start: Breakpoint) {
+  const theme = useTheme();
 
-  // if (query === 'up') {
-  //   return mediaUp;
-  // }
+  const mediaUp = useMediaQuery(theme.breakpoints.up(start));
+  const mediaDown = useMediaQuery(theme.breakpoints.down(start));
+  const mediaOnly = useMediaQuery(theme.breakpoints.only(start));
 
-  // if (query === 'down') {
-  //   return mediaDown;
-  // }
+  if (query === 'up') {
+    return mediaUp;
+  }
 
-  return true;
+  if (query === 'down') {
+    return mediaDown;
+  }
+
+  return mediaOnly;
 }
+
 
 // ----------------------------------------------------------------------
 

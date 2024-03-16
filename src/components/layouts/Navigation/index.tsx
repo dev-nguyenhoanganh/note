@@ -43,7 +43,7 @@ export default function Navigation({ openNav, onCloseNav }: NavigationProps) {
   const { user } = useAppSelector((state) => state.auth);
   const theme = useTheme();
 
-  const isDesktop = useResponsive();
+  const isDesktop = useResponsive('up', 'lg');
 
   useEffect(() => {
     if (openNav) {
