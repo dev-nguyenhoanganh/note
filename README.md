@@ -22,7 +22,7 @@ npm i
 3. Chạy ứng dụng
 
 ```bash
-npm run dev
+npm start
 ```
 
 4. Bật trình duyệt web và truy cập vào URL: http://localhost:9000/
