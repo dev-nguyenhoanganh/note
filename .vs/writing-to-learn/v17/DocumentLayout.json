@@ -1,12 +1,71 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Web Developer\\React.js\\visual-studio-workspace\\writing-to-learn\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\DEV\\visual-studio-workspace\\writing-to-learn\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{653C24D5-F878-463D-AB0D-AEBC0BABE033}|writing-to-learn.esproj|d:\\dev\\visual-studio-workspace\\writing-to-learn\\src\\app.test.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{653C24D5-F878-463D-AB0D-AEBC0BABE033}|writing-to-learn.esproj|solutionrelative:src\\app.test.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{653C24D5-F878-463D-AB0D-AEBC0BABE033}|writing-to-learn.esproj|d:\\dev\\visual-studio-workspace\\writing-to-learn\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{653C24D5-F878-463D-AB0D-AEBC0BABE033}|writing-to-learn.esproj|solutionrelative:package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{653C24D5-F878-463D-AB0D-AEBC0BABE033}|writing-to-learn.esproj|d:\\dev\\visual-studio-workspace\\writing-to-learn\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{653C24D5-F878-463D-AB0D-AEBC0BABE033}|writing-to-learn.esproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "package.json",
+              "DocumentMoniker": "D:\\DEV\\visual-studio-workspace\\writing-to-learn\\package.json",
+              "RelativeDocumentMoniker": "package.json",
+              "ToolTip": "D:\\DEV\\visual-studio-workspace\\writing-to-learn\\package.json",
+              "RelativeToolTip": "package.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-16T03:23:09.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.test.tsx",
+              "DocumentMoniker": "D:\\DEV\\visual-studio-workspace\\writing-to-learn\\src\\App.test.tsx",
+              "RelativeDocumentMoniker": "src\\App.test.tsx",
+              "ToolTip": "D:\\DEV\\visual-studio-workspace\\writing-to-learn\\src\\App.test.tsx",
+              "RelativeToolTip": "src\\App.test.tsx",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2024-03-16T03:22:13.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\DEV\\visual-studio-workspace\\writing-to-learn\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "D:\\DEV\\visual-studio-workspace\\writing-to-learn\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAAAIUAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-03-16T03:20:16.318Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
